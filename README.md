@@ -17,10 +17,13 @@ by these tables we decide delay of the cell,
 lec 2 : 
 N MOS
 it's a 4 terminal device , consists of p substarte whcih is opposite in case of P MOS which is made up of n substrate, isolation region, n+ diffusion regions one of which is source and the other is  drain ,poly silicon gates, gate oxide, G-Gate, S-Source, D-Drin, B-Body terminal,
+<img width="564" height="621" alt="Screenshot 2026-02-20 at 12 05 09 PM" src="https://github.com/user-attachments/assets/1174926c-13a9-4bd6-8726-d091823ad62c" />
+
 
 the most important one is Threshold voltage(Vt) considerations  in mosfets,
-just explain the inversion , accumulation and depletion of N MOS,
+
  Accumulation in N mos is  when Vg < 0 (negative gate voltage)
+<img width="1345" height="450" alt="Screenshot 2026-02-20 at 12 09 52 PM" src="https://github.com/user-attachments/assets/ee1683fa-8cc0-4320-8938-ed7f16d7ac19" />
 
 What physically happens:
 
@@ -51,7 +54,7 @@ there will be a depletion region at n+ and p substrate this means when you apply
 there is strong inversion of carriers when you apply high +ve voltage in this case its electrons coming near surface,
 
 there will be a small surface where minority carriers get accumulated due to high +ve potential at gate this phenomenon is called "Strong inversion"
-
+<img width="1345" height="450" alt="Screenshot 2026-02-20 at 12 09 52 PM" src="https://github.com/user-attachments/assets/ee1683fa-8cc0-4320-8938-ed7f16d7ac19" />
 and the potential at which it happens is called  "Threshold voltage"
 
 if you increase further the gate voltage but there will not be any minority carriers left or majority carriers left to attract or repel respectively.
@@ -63,25 +66,32 @@ there will be a  continuous channel from source to drain and now after applying 
 Body terminal also effects the threshold voltage of the mosdfet.
 
 Considering 2 scenarios:
-picture here 
+<img width="1208" height="547" alt="Screenshot 2026-02-22 at 10 36 52 AM" src="https://github.com/user-attachments/assets/c191b425-9b1c-4bb1-b0a5-06e152df6565" />
+
 
 one is having no voltage applied to body terminal and one is connected to source 
 
 the depletion region in the second is more compared to the first because you have additional reverse bias acting upon the body termianl this increases the depletion region width. and observation ishtat 
  inversion happens in the second diagram is a bit late compared to first if you increase the gate to source voltage.
 
- lect 4: pic here 
+ lect 4: 
+ <img width="1349" height="871" alt="Screenshot 2026-02-22 at 10 45 03 AM" src="https://github.com/user-attachments/assets/9d6c5779-38c1-4215-8269-a5d4e0e86542" />
+
  the negatively charged particles are attarcted more in the source as the n+ source is connected to +ve terminal the accumulated negatively charged particle are pulled throught source area
 
  for a particular gate voltage the inversion happens in the first one but the channel is in the ascending order in the second one due to applied potential between body and source.
  conclusion fromthis is that we need a additional potential for strong inversion.
 
- the threshold voltage equation is  pic here:
+ the threshold voltage equation is  
+ <img width="732" height="339" alt="Screenshot 2026-02-22 at 10 55 23 AM" src="https://github.com/user-attachments/assets/6acab037-69de-4446-8cf4-6b148cbcd025" />
+
 
 this equation represents the mosfet
 
- gamma eqn pic here
- phi f pic here
+<img width="490" height="287" alt="Screenshot 2026-02-22 at 10 56 33 AM" src="https://github.com/user-attachments/assets/dfec0c88-4141-4b36-b512-e5e38ba82077" />
+
+<img width="581" height="167" alt="Screenshot 2026-02-22 at 10 56 52 AM" src="https://github.com/user-attachments/assets/b2cb88c4-7fb2-4adf-8235-ad65be31cb82" />
+
 
 Lec 5
  Resistive Operation 
@@ -91,6 +101,8 @@ as we increase the Vgs the chanel width increases as induced charges is directly
 
  applying small drain to source voltage at Vgs = 1V and Vds = 0.05 v where Vt = 0.45V
  as Vgs >Vt we get condnuctive channel after applying small voltage here ,
+ <img width="870" height="739" alt="Screenshot 2026-02-22 at 11 33 13 AM" src="https://github.com/user-attachments/assets/8e1130a2-32ad-4e6c-a945-f6dd32bcc492" />
+
 
  there is voltage gradient in the channel when the Vds is applied but before applying its constant through out channel.
 
@@ -100,7 +112,9 @@ as we increase the Vgs the chanel width increases as induced charges is directly
 
    L6 :Drift current theory 
 
-   induced charge at any poin tint ht eregion is Qi(x) = -Cox([Vgs - V(x)]-Vt)
+   induced charge at any point in the region is Qi(x) = -Cox([Vgs - V(x)]-Vt)
+   <img width="418" height="137" alt="Screenshot 2026-02-22 at 11 41 18 AM" src="https://github.com/user-attachments/assets/d4ce8fbf-2442-4d12-8c89-76b158451dd5" />
+
 here  we have 2 kinds of current :
 1. Drift current (current due to potential difference)
 2. Diffusion current( current due to  difference in carrier concentration)
@@ -115,6 +129,9 @@ Id = -Vn(x).Qi(x).W
 velocity Vn(x) = mobility * electric field
 next is to intergrate dx over L will give theh V-I relation of N mos
 drift current equation pics here 
+<img width="1054" height="334" alt="image" src="https://github.com/user-attachments/assets/658f029e-9640-4229-a6b4-2a97ddd21585" />
+<img width="942" height="120" alt="image" src="https://github.com/user-attachments/assets/6e655121-b888-46fa-b212-4cdf2211a176" />
+<img width="1040" height="616" alt="image" src="https://github.com/user-attachments/assets/c571d9a2-0eb8-403a-9e39-4ee1b34d2475" />
 
 for the given one s the VDS ≤ (VGS − Vt) the mosfet operates in the linear region the channel is continuous from source to drain 
 
@@ -125,6 +142,7 @@ drain current is linear function of Vgs-Vt
  the impact of Vgs and Vds on Id 
  taking different values of Vgs and observing changes in the Id and we can sweep Vds from 0 to 0.05v 
  to take this and sweep and all this process needs a medium and that medium is SPICE it does it all .
+<img width="544" height="619" alt="Screenshot 2026-02-22 at 12 15 49 PM" src="https://github.com/user-attachments/assets/0d314d7b-465c-4b53-9f79-4c1991ce50f0" />
 
 Lec 5 Pinch off region condition:
 
@@ -136,12 +154,14 @@ but if increased more then comes where Vgs- Vds  = Vt
 here things will change 
 where channel near source is at 1 v and channel near drain has a voltage of 0.45 v  
 where the source is already inversion region but the channel near drain is just about inverted so the channel will be like  
-pic here of pinch off type of thing :
+<img width="577" height="542" alt="Screenshot 2026-02-22 at 12 24 02 PM" src="https://github.com/user-attachments/assets/6824c0e1-43e8-4fbc-8247-12aa08e7a4fc" />
+
 
 the phenomenon of the channel getting disappered is called "Pinch off phenomenon"
 
 after increasing more Vds where Vt >Vgs-Vds here the channel just disappears and this region is called saturation region
 
+<img width="1032" height="332" alt="image" src="https://github.com/user-attachments/assets/4d13c065-357e-4d13-914b-75adacd9e1ce" />
 
 
 L6: Drain current model for saturation region of operation
@@ -151,6 +171,10 @@ the channel voltage remains constant in saturation region
 channel length is modulated with Vgs
 its no more functiton of Vds 
 as we got earlier equatioon of drain current [Id] :
+<img width="618" height="120" alt="image" src="https://github.com/user-attachments/assets/1ec958e4-d34f-4aa0-bd93-112c57a2b837" />
+
+<img width="946" height="214" alt="image" src="https://github.com/user-attachments/assets/33c92b44-20eb-431c-8205-afa2082fe5c7" />
+
 drain current is function of all the  constants
 
 effective conductive channel length is modulated by applied Vds 
