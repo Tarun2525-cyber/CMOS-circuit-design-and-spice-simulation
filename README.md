@@ -182,16 +182,42 @@ Vds increases  then depletion region at drain increases and effective channel le
 more accurate equation and where we add lamda as a channel length modulation
 
 L1 Basic SPICE setup:
+we have seen many equations on threshold voltage, body effect coefficient , and fermilevel, where these are given correctly to get our simulation done neatly.
 
- 
+linear region drain current equation is most better approximation of the drain current
+ the technology constants for lower nodes are given by the industry and are just implimented as it is to get our values
+ <img width="1328" height="627" alt="Screenshot 2026-02-23 at 10 01 02 AM" src="https://github.com/user-attachments/assets/b71cfa10-df1e-4f61-99b0-53e7d72e233a" />
 
+the "yellow" marked are spice model parameters. 
+THE SPICE SETUP SHOULD LOOK LIKE 
+<img width="688" height="631" alt="Screenshot 2026-02-23 at 10 04 32 AM" src="https://github.com/user-attachments/assets/93a9948a-3bd6-4129-8086-663caad138cb" />
+<img width="579" height="397" alt="Screenshot 2026-02-23 at 10 06 58 AM" src="https://github.com/user-attachments/assets/3fad0478-d8be-4866-8bcf-2003e7562a97" />
 
+L2 Circuit description in SPICE syntax
 
+How to start SPICE simulation:
+1.define nodes
+<img width="753" height="622" alt="Screenshot 2026-02-23 at 10 09 31 AM" src="https://github.com/user-attachments/assets/0968afdb-7ab7-4f9d-9d1e-8598cb9f6dd8" />
 
+you can define any name for the nodes
+the nomenclature give for it is as 
+name of component , Drain, Gate, Source, Substrate, mosfet name(technology file) ,width , length  
+named R1, first terminal, last terminal, resistance
+Vdd, first terminal, last terminal, value
+Vin , first terminal,last terminal, value
+ as seen in 
+ <img width="667" height="220" alt="Screenshot 2026-02-23 at 10 16 12 AM" src="https://github.com/user-attachments/assets/45a48be3-d185-425c-966d-3021ba6b4801" />
 
+L3 define technology parameters
 
+Technology File:
+all model parameters comes as a package 
+the way you apply it is : 
+<img width="609" height="373" alt="Screenshot 2026-02-23 at 10 21 37 AM" src="https://github.com/user-attachments/assets/4897324c-860c-4b9d-b384-66ccb08415d4" />
+lastly save it as mod file 
+<img width="870" height="606" alt="Screenshot 2026-02-23 at 10 23 30 AM" src="https://github.com/user-attachments/assets/44ce9d45-ba71-4b09-a8e7-d536fc26cd1e" />
 
-
+ after that we need to add simulation commands 
 
 
 
