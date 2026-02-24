@@ -220,6 +220,16 @@ lastly save it as mod file
  after that we need to add simulation commands 
 
 
+L4- 
+<img width="1612" height="912" alt="image" src="https://github.com/user-attachments/assets/37c5e0f9-226c-4943-a9b3-22d096753b3f" />
+<img width="1378" height="1088" alt="image" src="https://github.com/user-attachments/assets/d7a0f238-226c-4c5d-86c6-9d47dd2044c0" />
+
+
+Lec 5 day 1 last :
+
+<img width="1656" height="1088" alt="image" src="https://github.com/user-attachments/assets/4d72dec0-4695-46be-b204-80d8a4f72afb" />
+
+<img width="1600" height="923" alt="image" src="https://github.com/user-attachments/assets/a798f9d4-73ac-41e8-9879-111ca598bf51" />
 
 
 
