@@ -230,17 +230,109 @@ Lec 5 day 1 last :
 <img width="1656" height="1088" alt="image" src="https://github.com/user-attachments/assets/4d72dec0-4695-46be-b204-80d8a4f72afb" />
 
 <img width="1600" height="923" alt="image" src="https://github.com/user-attachments/assets/a798f9d4-73ac-41e8-9879-111ca598bf51" />
+--------------------------------------------
+
+Day 2 lect 1 :
+Id–Vds curves were plotted for VGS = 0, 1.0, 1.5, 2.0, 2.5 V and graph was as.
+
+(Insert plot) → ![ID-VDS](images/id_vds.png)
+
+now At VGS = 0, device stays in cutoff and ID ≈ 0.
+
+but at low VDS, ID increases linearly → linear region.
+
+When VDS ≥ (VGS − VT), curves enter saturation and start flattening like in the given figure.
+
+(Insert linear vs sat) → ![Regions](images/regions.png)
+
+this slight slope in saturation is due to channel-length modulation.
+
+Short-channel device (L = 0.25 µm) shows higher ID and stronger modulation.
+
+here we observed reduced spacing between curves due to mobility degradation and velocity saturation.
+
+Even with same W/L, short-channel effects break ideal square-law behavior,.
+-------------------------------------------------------
+Day 2 lec 2 :
+This experiment looks at how the drain current changes with gate voltage when VDS is fixed at 2.5 V, comparing a long-channel MOSFET (L = 1.2 µm) and a short-channel MOSFET (L = 0.25 µm).
+
+The SPICE setup remains the same except for a single sweep command that scans VGS from 0 to 2.5 V while holding VDS constant at 2.5 V.
+
+For the long-channel device, the ID–VGS curve follows the expected square-law behavior, showing a smooth parabolic rise as VGS increases.
+
+The current stays near zero in the cutoff region, begins rising near the threshold voltage, and then grows quadratically for the rest of the sweep—matching the classic long-channel saturation equation.
+
+The short-channel device begins similarly, with quadratic behavior at low VGS, but the curve quickly deviates from the square-law pattern.
+
+As VGS increases further, the current stops following a parabola and instead becomes almost linear, a direct result of velocity saturation in the shorter channel.
+
+This shift from quadratic to linear behavior causes the short-channel device to produce higher currents and a noticeably straighter ID–VGS curve compared to the long-channel MOSFET.
+
+Side-by-side, the long-channel device maintains its curved, quadratic profile, while the short-channel device bends upward initially and then transitions into a straight-line trend.
+
+Physically, the long-channel MOSFET allows carriers to accelerate normally, but the short-channel one creates such high electric fields that carriers hit their maximum velocity, breaking the square-law model.
+
+Overall, the comparison clearly shows how shrinking channel length introduces strong short-channel effects, making the ID–VGS relationship linear and signaling the need for advanced models like BSIM in deep-submicron technologies.
+---------------------------------------------------
+
+Day 2 lec 3 :
+Sweeping VGS from 0 to 2.5 V at a fixed VDS = 2.5 V gives ID–VGS curves for both long- and short-channel MOSFETs.
+
+The long-channel device follows pure square-law behavior, with ID ∝ (VGS – VT)² across the entire sweep.
+
+The short-channel MOSFET matches the quadratic trend only at low VGS but shifts to a linear rise at higher VGS.
+
+This shift happens because the electric field becomes so high that carriers reach their saturation velocity (VSAT).
+
+Once velocity saturates, increasing VGS only increases charge, not carrier speed → resulting in linear ID–VGS behavior.
+
+The transition point is tied to the critical field EC = VSAT / μn.
+
+Modern analysis uses a unified model with Vmin = min(VGT, VDS, VDSAT) to cover all operating regions.
+
+Short-channel devices now have four regions: cutoff, linear, classical saturation, and velocity saturation.
+
+This velocity saturation effect is dominant in deep-submicron devices and breaks long-channel square-law assumptions.
+
+Overall, the comparison shows that long-channel MOSFETs stay quadratic, while short-channel MOSFETs turn linear at high VGS due to velocity saturation.
 
 
+--------------------------------------------
+Day 2 lec 4 
+The unified MOSFET model uses two key terms—VGT = VGS − VT and Vmin = min(VGT, VDS, VDSAT)—to decide which region the device operates in.
+
+With this approach, the same equation covers cutoff, linear, saturation, and velocity-saturation regions without switching formulas.
+
+For VGT < 0, the device is off and ID = 0; once VGT ≥ 0, the drain current follows the unified expression involving VGT and Vmin.
+
+When Vmin = VGT, the device enters saturation and the model reduces to the familiar long-channel equation ID ∝ VGT².
+
+When Vmin = VDS, the device is in the linear region, giving the standard resistive form where ID grows with VDS.
+
+When Vmin = VDSAT (short-channel only), the MOSFET enters velocity saturation, causing ID to depend linearly on VGS instead of quadratically.
+
+In this region, carrier velocity has reached its maximum limit, so extra gate voltage only increases charge, not speed—flattening the current.
+
+Because velocity saturation appears early in short-channel devices, they show lower peak currents even when W/L is kept the same
 
 
+---------------------------------------
+Day 2 lec 5 :
+A deeply scaled MOSFET with W = 0.39 µm and L = 0.15 µm was simulated for ID–VDS and ID–VGS, with VDS and VGS swept up to 1.8 V.
 
+In the ID–VDS curves, the device shows a quadratic increase at low VDS, but quickly transitions into almost straight-line behavior as VDS grows.
 
+This linear portion appears because the carrier velocity saturates early at such short channel lengths, preventing ID from rising quadratically.
 
+At the highest gate bias (VGS = 1.8 V), the peak current is around ~196 µA, much lower than what a long-channel device with the same W/L would produce.
 
+The ID–VGS sweep at fixed VDS = 1.8 V shows an almost fully linear curve from start to end, with hardly any visible quadratic region.
 
+This happens because VDSAT is very small at L = 0.15 µm, so the device immediately enters the velocity-saturation regime where Vmin = VDSAT.
 
+As a result, ID becomes proportional to VGS, matching the unified short-channel model and confirming the dominance of velocity saturation.
 
+The combination of quadratic behavior at low VDS and linear behavior at high VDS clearly shows how strong electric fields cap carrier velocity
 
 
 
