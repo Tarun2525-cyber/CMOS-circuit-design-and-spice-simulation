@@ -552,33 +552,89 @@ Device dimensions for both: W = 0.375 µm, L = 0.25 µm
 * The transfer curve may be slightly shifted to the left.
 * Width variation experiment:
 * New simulation: WN = 0.375 µm, WP = 0.9375 µm, Ln = Lp = 0.25 µm (WP is now 2.5 times wider than NMOS).
+  
+2 graphs needde to be here for comparing the 2 simulations
+  
+
+## 29-L3 Labs Sky130 SPICE simulation for CMOS:
+* Device sizing:
+                PFET width (Wp): 0.84 μm, NFET width (Wn): 0.36 μm
+W/L ratio: 2.3 (for both, with same length)
+* DC Analysis:
+              Sweep input (Vin): from 0 V to 1.8 V, in steps of 0.01 V
+* Plot: Vout vs Vin to get the inverter transfer curve
+* Switching threshold: Where Vout = Vin, found at 0.876 V for this W/L ratio
+* Transient Analysis:
+                     Input waveform: Use a pulse source for Vin, Rise time: 0.1 ns, Fall time: 0.1 ns, Pulse width: 2 ns
+* Plotting Vout vs time to observe the inverter’s dynamic response to a switching input
+
+1 graph
+
+## Static behaviour evaluation -CMOS inverter robustness- switching threshold
+
+## 30 L-1 Switching Threshold Vm:
+
+* Comparison setup for :
+                        NMOS width (Wn): 0.375 µm
+                        PMOS width (Wp): 0.935 µm
+* Observation:
+* The shape of both inverter VTC (Voltage Transfer Characteristic) graphs is the same.
+* This shows that the CMOS inverter is robust: when Vin is low, Vout is high, and when Vin is high, Vout is low—the classic inverter behavior.
+* This symmetry and reliability are key reasons why CMOS logic is widely used in digital applications.
+
+<img width="2800" height="1432" alt="image" src="https://github.com/user-attachments/assets/df754287-9a07-4273-b054-375ec03b1fb4" />
+
+* Parameters Defining CMOS Robustness
+* Switching Threshold
+* The point where Vin = Vout on the transfer curve.
+* This is often marked by the intersection point on the graph.
+
+<img width="2696" height="1256" alt="image" src="https://github.com/user-attachments/assets/4549b915-714d-40f0-98d2-42735ec7ed1e" /> 
+
+<img width="2824" height="1226" alt="image" src="https://github.com/user-attachments/assets/f31c9b7b-fab0-4dd1-8bb4-fc8966a4b862" />
 
 
+## 31 L-2 Analytical expression of Vm as a function of (W/L)p and (W/L)n:
+Here Switching Threshold (VM)
+* Vm is where VIN = VOUT.
+At this voltage, the inverter output flips—this is the switching threshold.
+At Vm:
+        * IDSP + IDSN = 0 (by KCL at the output)
+* NMOS and PMOS carry equal and opposite currents.
+* VM affects:
+            Noise margins, VTC symmetry, CMOS gate behavior
+2. Conditions at Switching Threshold
+* Devices operate near the velocity saturation region.
+* At switching: VDS ≈ VGS, so use velocity-sat current equations.
+* Approximations: Ignore channel-length modulation (λ ≈ 0).
+  
+3. Drain Current Equations
+* NMOS:
+      IDSN = kn · (VM – VTn) · VDSATn – (VDSATn² / 2)
+* PMOS:
+       VGSP = VM – VDD
+       IDSP = kp · (VGSP – |VTp|) · VDSATp – (VDSATp² / 2)
 
+<img width="1358" height="834" alt="image" src="https://github.com/user-attachments/assets/c695f484-6750-4fdd-a5fe-655f02511bce" />
 
+4. Apply KCL at Output: 
+* At VIN = VOUT = VM:
+                      IDSP + IDSN = 0
+Solve this equation for VM (the switching threshold).
 
+5. Analytical Formula for VM
+  
+<img width="968" height="373" alt="Screenshot 2026-02-26 at 3 51 44 AM" src="https://github.com/user-attachments/assets/ed3b4a36-5128-4dfd-8548-47a22f56cad2" />
 
+6. Examples
+Case A: (WP/WN) = 3.75 → VM ≈ 1.2 V
+Case B: (WP/WN) = 1.5 → VM ≈ 0.98 V
 
-<img width="1407" height="633" alt="Screenshot 2026-02-26 at 12 41 08 AM" src="https://github.com/user-attachments/assets/1a0062ea-af30-4998-a38e-cfaa97eda695" />
+* Larger PMOS (bigger W/L) pushes VM closer to VDD.
+7. Inverse Design:
+                  If you want a specific VM (e.g., 1.25 V for symmetric switching), Use the formula: VM = (R / (1 + R)) · VDD
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## 32 L-3 Analytical expression of (W/L)p and (W/L)n as a function of Vm:
 
 
 
