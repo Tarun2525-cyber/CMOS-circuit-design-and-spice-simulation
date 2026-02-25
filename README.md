@@ -1,186 +1,214 @@
 # CMOS-circuit-design-and-spice-simulation
- lec 1 :
+
+## BASICS OF NMOS DRAIN CURRENT(Id) vs DRAIN TO SOURCE VOLTAGE
+
+   ## Intro to Circuit design and SPICE simulation:
+   
+   ## 0-L1 : Why do we need SPICE simulations:
  
-Logic gates are made up of P mos and N mos in particular arrangemnet which gives a particular output be like and, nor, not, or gates etc, gates are tied together and this king of connection gives you invertor,In circuit design we try to understand different p mos and n mos transistors gives you which kind of output, the following graphs represent characterisitcs graphs of N mos 
+* Logic gates are constructed by arranging PMOS and NMOS transistors in specific configurations to achieve outputs such as AND, NOR, NOT, and OR.
+* By connecting these gates together, we can create fundamental circuits like inverters.
+* In circuit design, we study how different combinations of PMOS and NMOS transistors influence the type of output produced.
+* The graph below illustrates the characteristic curve of an NMOS transistor.
+* For a PMOS transistor,the characteristic curve is the inverted version.
+
 <img width="611" height="334" alt="Screenshot 2026-02-23 at 9 37 11 AM" src="https://github.com/user-attachments/assets/afa50862-0dec-4c46-a1a2-a259e3f7a53f" />
+
 <img width="1103" height="845" alt="Screenshot 2026-02-20 at 11 18 22 AM" src="https://github.com/user-attachments/assets/e3e9985d-0421-4c7b-9f53-6ba72078a58b" />
 
+* When you simulate these transistors in SPICE, you obtain switching curves like those shown above.
+* The resulting waveforms are used to determine the delay of the transistor.
+* To modify the delay, you can adjust the W/L ratio (width/length) of the transistors by changing either the width (W), the length (L), or both.
 
-the inverted one repressents that of P mos, when you after simulating in spice  you get a curve like the below one 
-the waveforms determines the delay of the transistor. based on delay we can tune w/l ratio(width/length). to tune delay we should tune w and l.
-Spice is done to do with delays.which can be good for us in 
-There is delay table to calculate delay of particular cell, which is combination of input slew, and output load,each buffer has its own delay table because the transistos used in it and the way those are arranged are different for different buffers as each and every transistors width and length are not in same dimension 
+**SPICE** simulations are primarily conducted to analyze these delays for optimization purposes.
+* Each cell (such as a buffer) has a delay table that relates the delay to two factors: input slew and output load.
+* Every buffer has its own unique delay table because the individual transistor sizes and arrangements can vary from one buffer to another.
+
 <img width="1393" height="872" alt="Screenshot 2026-02-20 at 11 57 40 AM" src="https://github.com/user-attachments/assets/1824d8b8-4f9b-4a9b-a929-901c2e12b9cd" />
 
-if considering a a buffer and its output load is 60fF and input slew of 40pF as shown in fig its between 50 and 70 then the delay of the buffer is also between 50 and 60 which x9'
-by these tables we decide delay of the cell, 
-lec 2 : 
-N MOS
-it's a 4 terminal device , consists of p substarte whcih is opposite in case of P MOS which is made up of n substrate, isolation region, n+ diffusion regions one of which is source and the other is  drain ,poly silicon gates, gate oxide, G-Gate, S-Source, D-Drin, B-Body terminal,
+For example, if a buffer’s output load is 60 fF and the input slew is 40 ps, you can use the delay table to determine that its delay falls between the values for 50 and 70 fF.
+By referring to these tables, we can accurately estimate the delay of a cell based on its specific input and output conditions.
+
+
+   ## 1-L2 Intro to Basic element in circuit design NMOS: 
+
+## NMOS Transistor Structure and Operation: 
+* NMOS is a four-terminal device consisting of:
+* A p-type substrate (in contrast, PMOS uses an n-type substrate)
+* Isolation regions
+* Two n+ diffusion regions (one acts as the source, the other as the drain)
+* Polysilicon gate
+Gate oxide
+Total 4 Terminals: G (Gate), S (Source), D (Drain), B (Body)
+
 <img width="564" height="621" alt="Screenshot 2026-02-20 at 12 05 09 PM" src="https://github.com/user-attachments/assets/1174926c-13a9-4bd6-8726-d091823ad62c" />
+Threshold Voltage (V<sub>t</sub>) in MOSFETs
+
+* The threshold voltage (V<sub>t</sub>) is a key parameter in MOSFET operation.
+* **Accumulation** in NMOS (V<sub>g</sub> < 0)
+<img width="1345" height="450" alt="Screenshot 2026-02-20 at 12 09 52 PM" src="https://github.com/user-attachments/assets/ee1683fa-8cc0-4320-8938-ed7f16d7ac19" />
+## When the gate voltage is negative:
+* Holes (majority carriers in p-type substrate) are attracted toward the oxide.
+* Hole concentration increases near the surface (accumulation).
+## Depletion in NMOS (Small Positive V<sub>g</sub>)
+* When the gate voltage is small and positive:
+* Positive voltage repels holes away from the oxide.
+* Only negative charges remain, creating a region with fixed negative charge.
+* This area, lacking mobile carriers, is known as the depletion region.
+## Inversion in NMOS (V<sub>g</sub> > V<sub>t</sub>)
+* When the gate voltage exceeds the threshold voltage (V<sub>t</sub>):
+* A strong positive voltage attracts electrons (minority carriers) to the surface.
+* These electrons gather at the oxide–semiconductor interface, forming an n-type inversion layer.
 
 
-the most important one is Threshold voltage(Vt) considerations  in mosfets,
-
- Accumulation in N mos is  when Vg < 0 (negative gate voltage)
+     ## 2-L3 Strong Inversion and Threshold Voltage:
+  
+   ## Depletion and Inversion in NMOS
+* At the interface between the n+ region and the p-type substrate, a depletion region forms.
+* When a positive voltage is applied to the gate, the region near the interface loses its majority carriers (holes), becoming depleted.
+* Applying a high positive gate voltage causes strong inversion:
+* Negative charges in p substarte are attracted to the surface.
+* A narrow surface region accumulates these electrons—this is known as **strong inversion**.
 <img width="1345" height="450" alt="Screenshot 2026-02-20 at 12 09 52 PM" src="https://github.com/user-attachments/assets/ee1683fa-8cc0-4320-8938-ed7f16d7ac19" />
 
-What physically happens:
+* The specific gate voltage at which strong inversion occurs is called the threshold voltage (V<sub>t</sub>).
+* Increasing the gate voltage further does not result in more attraction or repulsion, as there are no additional majority or minority carriers left to affect.
+* Negative charges from the n+ source region move toward the gate, widening the channel, while the depletion region width remains unchanged.
+* A conductive channel forms from source to drain; applying a voltage between source and drain allows current to flow through this channel.
+  
+## Effect of Body Terminal on Threshold Voltage
+*The body terminal also influences the threshold voltage of the MOSFET.
 
-Negative gate voltage pulls holes (majority carriers in p-type) toward the oxide.
+Consider these two scenarios:
 
-Hole concentration at the surface increases → “accumulates”
-Depletion region in N mos is when V<sub>G</sub> = small +ve voltage (positive but not too high)
-
-What physically happens:
-
-Positive gate voltage repels holes away from the oxide.
-
-Only ionized acceptor atoms (A⁻) remain → fixed negative charge.
-
-This region with no mobile carriers = depletion region.
-
-Inversion region in N mos is when V  > Vt (threshold voltage)
-
-What physically happens:
-
-A strong positive gate voltage bends bands enough to pull electrons (minority carriers in p-type) to the surface.
-
-These electrons accumulate at the oxide–semiconductor interface and form an n-type inversion layer.
-
-lect 3:
-there will be a depletion region at n+ and p substrate this means when you apply +ve voltageg your region near it gets depleted about its majority carriers,
-
-there is strong inversion of carriers when you apply high +ve voltage in this case its electrons coming near surface,
-
-there will be a small surface where minority carriers get accumulated due to high +ve potential at gate this phenomenon is called "Strong inversion"
-<img width="1345" height="450" alt="Screenshot 2026-02-20 at 12 09 52 PM" src="https://github.com/user-attachments/assets/ee1683fa-8cc0-4320-8938-ed7f16d7ac19" />
-and the potential at which it happens is called  "Threshold voltage"
-
-if you increase further the gate voltage but there will not be any minority carriers left or majority carriers left to attract or repel respectively.
-
-here the electrons from n+ source areas get attracted towards the gate the channel width gets increased and no change in depletion region width 
-
-there will be a  continuous channel from source to drain and now after applying voltage to source ther will be flow of current through the channel.
-
-Body terminal also effects the threshold voltage of the mosdfet.
-
-Considering 2 scenarios:
 <img width="1208" height="547" alt="Screenshot 2026-02-22 at 10 36 52 AM" src="https://github.com/user-attachments/assets/c191b425-9b1c-4bb1-b0a5-06e152df6565" />
 
+* No voltage applied to the body terminal
+* Body terminal connected to the source
+In the second scenario, the depletion region is larger because the body-source connection creates an additional reverse bias, increasing the depletion width.
+As a result, inversion in the second case occurs at a higher gate-to-source voltage compared to the first scenario.
 
-one is having no voltage applied to body terminal and one is connected to source 
-
-the depletion region in the second is more compared to the first because you have additional reverse bias acting upon the body termianl this increases the depletion region width. and observation ishtat 
- inversion happens in the second diagram is a bit late compared to first if you increase the gate to source voltage.
-
- lect 4: 
+-----------------
+   ## 3-L4: Threshold voltage with positive substarte potential: 
+   
  <img width="1349" height="871" alt="Screenshot 2026-02-22 at 10 45 03 AM" src="https://github.com/user-attachments/assets/9d6c5779-38c1-4215-8269-a5d4e0e86542" />
-
- the negatively charged particles are attarcted more in the source as the n+ source is connected to +ve terminal the accumulated negatively charged particle are pulled throught source area
-
- for a particular gate voltage the inversion happens in the first one but the channel is in the ascending order in the second one due to applied potential between body and source.
- conclusion fromthis is that we need a additional potential for strong inversion.
-
- the threshold voltage equation is  
- <img width="732" height="339" alt="Screenshot 2026-02-22 at 10 55 23 AM" src="https://github.com/user-attachments/assets/6acab037-69de-4446-8cf4-6b148cbcd025" />
-
-
-this equation represents the mosfet
-
-<img width="490" height="287" alt="Screenshot 2026-02-22 at 10 56 33 AM" src="https://github.com/user-attachments/assets/dfec0c88-4141-4b36-b512-e5e38ba82077" />
-
-<img width="581" height="167" alt="Screenshot 2026-02-22 at 10 56 52 AM" src="https://github.com/user-attachments/assets/b2cb88c4-7fb2-4adf-8235-ad65be31cb82" />
-
-
-Lec 5
- Resistive Operation 
  
-if we increase Vgs>Vt we get more conductive region  at channel region
-as we increase the Vgs the chanel width increases as induced charges is directly proportional to (Vgs -Vt)
+* When the n+ source is connected to a positive terminal, negatively charged particles (electrons) are more strongly attracted and accumulate near the source.
+* The accumulated -ve charge are pulled through the source region.
+* For a specific gate voltage, inversion (formation of the conductive channel) occurs in the first scenario, while in the second scenario (with body-source potential), the channel formation is more gradual (ascending order).
+* This demonstrates that an additional potential is needed for strong inversion when there is a voltage difference between the body and source.
+* The threshold voltage equation for the MOSFET is:
 
- applying small drain to source voltage at Vgs = 1V and Vds = 0.05 v where Vt = 0.45V
- as Vgs >Vt we get condnuctive channel after applying small voltage here ,
- <img width="870" height="739" alt="Screenshot 2026-02-22 at 11 33 13 AM" src="https://github.com/user-attachments/assets/8e1130a2-32ad-4e6c-a945-f6dd32bcc492" />
+<img width="732" height="339" alt="Screenshot 2026-02-22 at 10 55 23 AM" src="https://github.com/user-attachments/assets/6acab037-69de-4446-8cf4-6b148cbcd025" />
+The following equations represent the MOSFET operation and relationships:
+
+<img width="490" height="287" alt="Screenshot 2026-02-22 at 10 56 33 AM" src="https://github.com/user-attachments/assets/dfec0c88-4141-4b36-b512-e5e38ba82077" /> <img width="581" height="167" alt="Screenshot 2026-02-22 at 10 56 52 AM" src="https://github.com/user-attachments/assets/b2cb88c4-7fb2-4adf-8235-ad65be31cb82" />
+
+-------------------
+## NMOS Resisitve region and saturation region of operation:
+
+* Resistive Operation of NMOS
+* When V<sub>GS</sub> > V<sub>T</sub>, a more conductive region is formed in the channel.
+* As V<sub>GS</sub> increases, the channel width increases because the number of induced charges is directly proportional to (V<sub>GS</sub> - V<sub>T</sub>).
+* If a small drain-to-source voltage (V<sub>DS</sub>) is applied, for example V<sub>GS</sub> = 1V, V<sub>DS</sub> = 0.05V, and V<sub>T</sub> = 0.45V:
+* Since V<sub>GS</sub> > V<sub>T</sub>, a conductive channel is formed and current can flow.
+  
+<img width="870" height="739" alt="Screenshot 2026-02-22 at 11 33 13 AM" src="https://github.com/user-attachments/assets/8e1130a2-32ad-4e6c-a945-f6dd32bcc492" />
+
+* Before applying V<sub>DS</sub>, the voltage is uniform across the channel.
+* After applying V<sub>DS</sub>, a voltage gradient develops along the channel, so the potential varies at different points (lengths) of the channel.
+* The channel length is greater than the effective channel length (L).
+* After applying V<sub>DS</sub>, the voltage at any point x along the channel becomes (V<sub>GS</sub> - V<sub>x</sub>) instead of just V<sub>GS</sub>.
+
+  
+## 5L-2 :Drift current theory :
+
+* Induced Charge and Current Mechanisms in the Channel
+* The induced charge at any point x in the channel is given by:
+* Q<sub>i</sub>(x) = -C<sub>ox</sub> * ([V<sub>GS</sub> - V(x)] - V<sub>T</sub>)
+  
+<img width="418" height="137" alt="Screenshot 2026-02-22 at 11 41 18 AM" src="https://github.com/user-attachments/assets/d4ce8fbf-2442-4d12-8c89-76b158451dd5" />
+
+## There are two types of current in the channel:
+
+**Drift current**: Due to the potential difference (voltage gradient) across the channel.
+
+**Diffusion current**: Due to the difference in carrier concentration.
+
+* In the channel, drift current dominates because there is a potential gradient when V<sub>DS</sub> is applied.
+*The drift current equation [I<sub>D</sub>] is based on the product of the velocity of charge and the available charge, divided by the channel width.
 
 
- there is voltage gradient in the channel when the Vds is applied but before applying its constant through out channel.
+## 6 L-3 Drain current model for linear region operaation:
 
- the channel length is greater than effective channel length (L) 
-  the potential at different part or length of channel is different due to application of Vds 
-  now before applying Vds every point on the channel has voltage of Vgs but after applying we get (Vgs - Vx)
+* Drift Current Equation in NMOS
+* The drift current in the channel is given by:
+  I<sub>D</sub> = -V<sub>n</sub>(x) · Q<sub>i</sub>(x) · W
 
-   L6 :Drift current theory 
+* Where V<sub>n</sub>(x) is the carrier velocity
+ Q<sub>i</sub>(x) is the induced charge at position x
+* W is the channel width
+* The carrier velocity is:
+* V<sub>n</sub>(x) = μ · E
 
-   induced charge at any point in the region is Qi(x) = -Cox([Vgs - V(x)]-Vt)
-   <img width="418" height="137" alt="Screenshot 2026-02-22 at 11 41 18 AM" src="https://github.com/user-attachments/assets/d4ce8fbf-2442-4d12-8c89-76b158451dd5" />
+* Where μ is the mobility and E is the electric field.
+* To derive the current-voltage relationship for NMOS, you integrate dx over the channel length L.
 
-here  we have 2 kinds of current :
-1. Drift current (current due to potential difference)
-2. Diffusion current( current due to  difference in carrier concentration)
+* The drift current equation and further derivation steps are shown below:
 
-Drift current in channel as there is potenital gradient so there is drift current there
-Drift current equation:[Id]
-(velocity of charge  X available charge) over channel width 
+<img width="1054" height="334" alt="image" src="https://github.com/user-attachments/assets/658f029e-9640-4229-a6b4-2a97ddd21585" /> <img width="942" height="120" alt="image" src="https://github.com/user-attachments/assets/6e655121-b888-46fa-b212-4cdf2211a176" /> <img width="1040" height="616" alt="image" src="https://github.com/user-attachments/assets/c571d9a2-0eb8-403a-9e39-4ee1b34d2475" />
 
-Lec 6 :
-generating  drift current equation
-Id = -Vn(x).Qi(x).W
-velocity Vn(x) = mobility * electric field
-next is to intergrate dx over L will give theh V-I relation of N mos
-drift current equation pics here 
-<img width="1054" height="334" alt="image" src="https://github.com/user-attachments/assets/658f029e-9640-4229-a6b4-2a97ddd21585" />
-<img width="942" height="120" alt="image" src="https://github.com/user-attachments/assets/6e655121-b888-46fa-b212-4cdf2211a176" />
-<img width="1040" height="616" alt="image" src="https://github.com/user-attachments/assets/c571d9a2-0eb8-403a-9e39-4ee1b34d2475" />
+* When V<sub>DS</sub> ≤ (V<sub>GS</sub> − V<sub>T</sub>), the MOSFET operates in the linear region, and the channel is continuous from source to drain.
 
-for the given one s the VDS ≤ (VGS − Vt) the mosfet operates in the linear region the channel is continuous from source to drain 
+## 7 L-4 Spice conclusion to resisitve operation
 
-
-L4 Spice conclusion to resisitve operation
-
-drain current is linear function of Vgs-Vt 
- the impact of Vgs and Vds on Id 
- taking different values of Vgs and observing changes in the Id and we can sweep Vds from 0 to 0.05v 
- to take this and sweep and all this process needs a medium and that medium is SPICE it does it all .
+* Drain Current Characteristics and SPICE Simulation
+* The drain current (I<sub>D</sub>) is a linear function of (V<sub>GS</sub> − V<sub>T</sub>).
+* Both V<sub>GS</sub> and V<sub>DS</sub> impact the value of I<sub>D</sub>.
+* By taking different values of V<sub>GS</sub> and sweeping V<sub>DS</sub> from 0 to 0.05 V, you can observe how I<sub>D</sub> changes.
+* This entire process of sweeping and analyzing the output is performed using SPICE simulation.
+  
 <img width="544" height="619" alt="Screenshot 2026-02-22 at 12 15 49 PM" src="https://github.com/user-attachments/assets/0d314d7b-465c-4b53-9f79-4c1991ce50f0" />
 
-Lec 5 Pinch off region condition:
+
+## 8 L-5 Pinch off region condition:
 
  
-what happens when Vds > (Vgs - Vt) it will be in saturation region
-we are here increasing Vds from 0.05 to 0.45 v as  seen in the table 
-during Vds upto 0.45 Vgs - Vds is greater than Vt
-but if increased more then comes where Vgs- Vds  = Vt
-here things will change 
-where channel near source is at 1 v and channel near drain has a voltage of 0.45 v  
-where the source is already inversion region but the channel near drain is just about inverted so the channel will be like  
+**NMOS Saturation Region and Pinch-Off Phenomenon**
+
+* When V<sub>DS</sub> > (V<sub>GS</sub> − V<sub>T</sub>), the MOSFET enters the saturation region.
+* In the example, V<sub>DS</sub> is increased from 0.05 V up to 0.45 V. During this range, V<sub>GS</sub> − V<sub>DS</sub> is still greater than V<sub>T</sub>.
+* If V<sub>DS</sub> increases further so that V<sub>GS</sub> − V<sub>DS</sub> = V<sub>T</sub>, a significant change occurs:
+* The channel near the source is strongly inverted (V = 1 V), but near the drain (V = 0.45 V) it is only just inverted.
+* The channel shape appears as shown below:
+* 
 <img width="577" height="542" alt="Screenshot 2026-02-22 at 12 24 02 PM" src="https://github.com/user-attachments/assets/6824c0e1-43e8-4fbc-8247-12aa08e7a4fc" />
 
-
-the phenomenon of the channel getting disappered is called "Pinch off phenomenon"
-
-after increasing more Vds where Vt >Vgs-Vds here the channel just disappears and this region is called saturation region
-
+* The point where the channel disappears near the drain is known as the "Pinch-Off Phenomenon".
+  
+* When V<sub>DS</sub> increases further and V<sub>T</sub> > (V<sub>GS</sub> − V<sub>DS</sub>), the channel vanishes at the drain end, and the device is fully in the saturation region.
+  
 <img width="1032" height="332" alt="image" src="https://github.com/user-attachments/assets/4d13c065-357e-4d13-914b-75adacd9e1ce" />
 
 
-L6: Drain current model for saturation region of operation
+## 9 L-6: Drain current model for saturation region of operation
 
 
-the channel voltage remains constant in saturation region 
-channel length is modulated with Vgs
-its no more functiton of Vds 
-as we got earlier equatioon of drain current [Id] :
-<img width="618" height="120" alt="image" src="https://github.com/user-attachments/assets/1ec958e4-d34f-4aa0-bd93-112c57a2b837" />
+**Drain Current in Saturation and Channel Length Modulation**
 
-<img width="946" height="214" alt="image" src="https://github.com/user-attachments/assets/33c92b44-20eb-431c-8205-afa2082fe5c7" />
+* In the saturation region, the channel voltage remains constant.
+* The channel length is modulated by V<sub>GS</sub> and is no longer a function of V<sub>DS</sub>.
+* The previously derived drain current (I<sub>D</sub>) equation is:
+  
+<img width="618" height="120" alt="image" src="https://github.com/user-attachments/assets/1ec958e4-d34f-4aa0-bd93-112c57a2b837" /> <img width="946" height="214" alt="image" src="https://github.com/user-attachments/assets/33c92b44-20eb-431c-8205-afa2082fe5c7" />
 
-drain current is function of all the  constants
+* Drain current in saturation is a function of various constants (device parameters and applied voltages).
+* The effective conductive channel length is influenced by the applied V<sub>DS</sub>:
+* As V<sub>DS</sub> increases, the depletion region at the drain widens, which reduces the effective channel length.
+* For a more accurate model, the effect of channel length modulation is included by introducing the parameter λ (lambda).
 
-effective conductive channel length is modulated by applied Vds 
-Vds increases  then depletion region at drain increases and effective channel length decreases.
-more accurate equation and where we add lamda as a channel length modulation
 
+---------------------
 L1 Basic SPICE setup:
 we have seen many equations on threshold voltage, body effect coefficient , and fermilevel, where these are given correctly to get our simulation done neatly.
 
@@ -249,9 +277,10 @@ this slight slope in saturation is due to channel-length modulation.
 
 Short-channel device (L = 0.25 µm) shows higher ID and stronger modulation.
 
-here we observed reduced spacing between curves due to mobility degradation and velocity saturation.
+here we observed reduced spacing between curves especially due to mobility degradation and velocity saturation.
 
 Even with same W/L, short-channel effects break ideal square-law behavior,.
+
 -------------------------------------------------------
 Day 2 lec 2 :
 This experiment looks at how the drain current changes with gate voltage when VDS is fixed at 2.5 V, comparing a long-channel MOSFET (L = 1.2 µm) and a short-channel MOSFET (L = 0.25 µm).
@@ -273,6 +302,7 @@ Side-by-side, the long-channel device maintains its curved, quadratic profile, w
 Physically, the long-channel MOSFET allows carriers to accelerate normally, but the short-channel one creates such high electric fields that carriers hit their maximum velocity, breaking the square-law model.
 
 Overall, the comparison clearly shows how shrinking channel length introduces strong short-channel effects, making the ID–VGS relationship linear and signaling the need for advanced models like BSIM in deep-submicron technologies.
+
 ---------------------------------------------------
 
 Day 2 lec 3 :
@@ -324,7 +354,7 @@ In the ID–VDS curves, the device shows a quadratic increase at low VDS, but qu
 
 This linear portion appears because the carrier velocity saturates early at such short channel lengths, preventing ID from rising quadratically.
 
-At the highest gate bias (VGS = 1.8 V), the peak current is around ~196 µA, much lower than what a long-channel device with the same W/L would produce.
+At the highest gate bias (VGS = 1.8 V), the peak current is around ~196 µA, much lower than what a long-channel device with the same W/L would have given.
 
 The ID–VGS sweep at fixed VDS = 1.8 V shows an almost fully linear curve from start to end, with hardly any visible quadratic region.
 
@@ -335,31 +365,109 @@ As a result, ID becomes proportional to VGS, matching the unified short-channel 
 The combination of quadratic behavior at low VDS and linear behavior at high VDS clearly shows how strong electric fields cap carrier velocity
 
 
+-----------------------------------------------
+Day 2 lec 6
+ID–VGS curve at VDS = 1.8 V shows the device turning on sharply near its threshold, even though the rest of the curve is linear due to strong velocity saturation.
+
+By drawing a tangent along the steepest rising part of the curve and extending it to the VGS axis, the threshold voltage can be extracted.
+
+This extrapolation gives VT ≈ 0.77 V, matching the expected onset of conduction for the 0.15 µm short-channel MOSFET.
+
+The method works because the turn-on region still follows the square-law behavior ID ∝ (VGS − VT)² before velocity saturation takes over.
+
+Combined with the earlier ID–VDS and ID–VGS results, this confirms a complete short-channel picture: early VT, immediate velocity saturation, and linear current growth.
+
+------------------------------------------------
+Day 2 Part 2 lec 1 :
+At this stage, the MOSFET is viewed less like an analog device and more like a digital switch, which makes understanding CMOS logic easier.
+
+A MOSFET basically turns ON when its gate-to-source voltage crosses the threshold and stays OFF when it doesn’t, and expressing this as |VGS| ≥ |VT| gives one rule for both NMOS and PMOS.
+
+A CMOS inverter is just a PMOS on top and an NMOS on the bottom, both driven by the same input and sharing a common output node.
+
+When the input is high, the NMOS turns on while the PMOS turns off, which pulls the output down to ground and creates the inverter’s “flipped” result.
+
+This simple switch-based perspective is what we use to build the inverter truth table and later derive the Voltage Transfer Characteristic (VTC).
 
 
+----------------------------------------------
+Day 2 part 2 lec 2 :
+To build the CMOS inverter’s VTC, we first look at the two extreme input cases—VIN = VDD and VIN = 0—and replace each transistor with its ON/OFF switch equivalent.
+
+When the input is high, the NMOS turns ON and acts like a resistive path to ground, while the PMOS turns OFF, leaving the output node to discharge through the NMOS until it reaches 0 V.
+
+When the input is low, the PMOS becomes the conducting device and behaves like a resistor to VDD, while the NMOS is OFF, allowing the output node to charge back up to VDD.
+
+These ON resistances, RN for NMOS and RP for PMOS, are not fixed values but depend on device operating regions, and they later govern the VTC shape and the rise/fall delays.
+
+To prepare for the full VTC derivation, voltage and current labels like VGSN, VGSP, VDSN, IDSP, etc., are defined so both transistors can be analyzed together during the switching transition.
+
+With these two boundary cases and naming conventions set, the next step is to solve both device equations simultaneously and find the switching point where NMOS and PMOS currents balance.
 
 
+-----------------------------------------------
+day 2 part 2 lec 3 :
+Before deriving the CMOS inverter’s VTC, we first clean up our voltage naming: NMOS uses VGSN and PMOS uses VGSP, because PMOS voltages naturally come out negative and need their own notation to avoid sign mistakes.
+
+The lecture also clarifies current directions: the NMOS pulls current upward through the output node when discharging, while the PMOS pushes current downward when charging, which means IDSP = –IDSN and this relationship becomes the heart of VTC derivation.
+
+For the NMOS, things are simple—its VGSN equals VIN and its VDSN equals VOUT, since its source is grounded; for the PMOS, both VGS and VDS become negative because its source is tied to VDD.
+
+Once these voltages are defined, the NMOS load curve (IDSN vs VDSN) and the PMOS load curve (IDSP vs VDSP) can be plotted; the PMOS curves are essentially mirror images of the NMOS curves in the negative quadrant.
+
+These two curve families matter because the VTC is simply the point where NMOS sinking current and PMOS sourcing current balance—meaning IDSN(VIN, VOUT) = –IDSP(VIN, VOUT)—and this balance defines VOUT for every input value.
+
+With voltage definitions, current directions, and both load curves in place, the next lecture will plug in the nonlinear drain-current equations for NMOS and PMOS and solve for VOUT as VIN varies, finally producing the CMOS inverter’s VTC.
+
+--------------------------------------------
+day2 part 2 lec 4 :
+Inside a CMOS inverter, we technically have four transistor voltages (VGSN, VDSN, VGSP, VDSP) and two drain currents (IDSN, IDSP), but digital logic only “sees” VIN and VOUT — everything else is internal.
+
+To derive the VTC, the lecture focuses on rewriting every PMOS and NMOS voltage in terms of just VIN and VOUT, since the final curve must be VOUT as a function of VIN only.
+
+The first transformation is converting the PMOS gate voltage VGSP into the input voltage using VIN = VGSP + VDD, which shifts negative VGSP values into the positive VIN axis.
+
+Next, the PMOS drain current is mirrored into NMOS coordinates using IDSN = –IDSP, because PMOS current flows in the opposite direction, giving us a PMOS-equivalent load curve expressed entirely in terms of positive current.
+
+After converting each PMOS point (VGSP, IDSP) into (VIN, IDSN), the PMOS load curve becomes directly comparable to NMOS curves, letting both devices be plotted on the same VIN–IDSN axes.
+
+This step is crucial because the CMOS VTC comes from solving where NMOS current equals PMOS current; once both sides are rewritten as IDSN(VIN, VOUT), their intersection gives the output voltage.
+
+The lecture ends with VGSP and IDSP fully eliminated, and the next one will remove the remaining internal voltages (VDSN and VDSP) so the final VTC equation can be formed purely from VIN and VOUT.
+
+------------------------------------------
+
+day 2 part 2 lec  5:
+This lecture finishes the job of removing all internal PMOS/NMOS voltages so that both devices can finally be described only with VIN, VOUT, and the current IDSN — exactly what we need for the CMOS VTC.
+
+The key step is converting the PMOS drain-to-source voltage using VDSP = VOUT – VDD, which shifts the entire PMOS I–V curve horizontally and replaces the negative VDSP axis with a clean VOUT axis.
+
+After this shift, every PMOS data point can now be expressed as (VIN, VOUT, IDSN) — meaning VGSP, VDSP, and IDSP are completely eliminated, and the PMOS load curve is now in inverter-ready form.
+
+The NMOS side is much simpler: since its source is at ground, VGSN = VIN and VDSN = VOUT, so the NMOS I–V curves directly become the NMOS load curve just by renaming axes.
+
+With both curves expressed as IDSN(VIN, VOUT), the stage is set: the VTC comes from solving where NMOS current equals PMOS current, and this merging of their load curves forms the complete VOUT vs VIN characteristic.
+
+----------------------------------------
+day 2 part 2 lec 6 :
+The lecture explains that the CMOS VTC comes from overlaying the NMOS and PMOS load curves and finding where their currents balance, since both devices share the same VIN, VOUT, and output current. Once both curves are expressed as IDSN(VIN, VOUT), the process is simple: for each VIN, take the NMOS and PMOS curves at that value and their intersection gives the corresponding VOUT. As VIN sweeps from 0 to 2 V, the intersections move from VOUT = 2 V to VOUT = 0 V, with the sharp switching region appearing around VIN ≈ 1 V when both devices are in saturation. Connecting these points produces the classic S-shaped inverter characteristic. This approach also makes it clear which region each transistor operates in at every VIN, setting up the analysis of gain, noise margins, and delay.
 
 
+------------------------------------------
+day 3 lec 1 :
+This lecture kicks off the practical SPICE setup for generating the CMOS inverter VTC, which means writing a clean netlist with correct device terminals, node names, and model references.
 
+The inverter schematic is the usual one: PMOS at the top connected to VDD, NMOS at the bottom connected to ground, both gates tied to the input, their drains tied to the output, and the bodies tied to their respective supplies.
 
+Substrate connections are highlighted because SPICE needs them explicitly, and they influence threshold voltage through the body effect.
 
+Both the PMOS and NMOS are given identical dimensions (W = 0.375 µm, L = 0.25 µm) for demonstration, even though real designs typically use a wider PMOS.
 
+A simple 10 fF load capacitor is placed at the output, and VDD is set to 2.5 V, with VIN planned to sweep from 0 to 2.5 V.
 
+The lecture identifies all the inverter nodes (in, out, VDD, 0, sub_p, sub_n) and then writes the first SPICE line: the PMOS entry with drain, gate, source, and body explicitly listed.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+The session ends after defining the PMOS; the next lecture will add the NMOS, the capacitor, the VIN source, model cards, and finally run the DC sweep to plot the VTC.
 
 
 
