@@ -507,32 +507,59 @@ How it works:
 <img width="1073" height="765" alt="day lec 6 2" src="https://github.com/user-attachments/assets/200a399c-3653-4b62-9d94-041fd4d1f8dd" />
 
 
-------------------------------------------
-day 3 lec 1 :
-This lecture kicks off the practical SPICE setup for generating the CMOS inverter VTC, which means writing a clean netlist with correct device terminals, node names, and model references.
 
-The inverter schematic is the usual one: PMOS at the top connected to VDD, NMOS at the bottom connected to ground, both gates tied to the input, their drains tied to the output, and the bodies tied to their respective supplies.
+## CMOS Switching threshold and dynamic simulations:
+   ## Voltage transfer characteristics – SPICE simulations:
+   ## 27 L-1 SPICE deck creation for CMOS inverter:
+   
+* This lecture starts the hands-on part: setting up a clean SPICE netlist for the CMOS inverter VTC.
+* PMOS at the top (connected to VDD)
+* NMOS at the bottom (connected to ground)
+* Both gates connected to the input, drains tied together at the output, and bodies tied to their respective supplies.
+  
+<img width="1057" height="475" alt="day 3 lec 1 " src="https://github.com/user-attachments/assets/ae59d945-8909-4bef-8852-3a71c145855a" />
 
-Substrate connections are highlighted because SPICE needs them explicitly, and they influence threshold voltage through the body effect.
-
-Both the PMOS and NMOS are given identical dimensions (W = 0.375 µm, L = 0.25 µm) for demonstration, even though real designs typically use a wider PMOS.
-
-A simple 10 fF load capacitor is placed at the output, and VDD is set to 2.5 V, with VIN planned to sweep from 0 to 2.5 V.
-
-The lecture identifies all the inverter nodes (in, out, VDD, 0, sub_p, sub_n) and then writes the first SPICE line: the PMOS entry with drain, gate, source, and body explicitly listed.
-
-The session ends after defining the PMOS; the next lecture will add the NMOS, the capacitor, the VIN source, model cards, and finally run the DC sweep to plot the VTC.
-
-
-
-
+* Substrate (body) connections are important in SPICE since they affect threshold voltage via the body effect.
+* For this demo, both PMOS and NMOS use W = 0.375 µm and L = 0.25 µm (real designs usually make PMOS wider).
+* A 10 fF load capacitor is added at the output, VDD = 2.5 V, and VIN will sweep from 0 to 2.5 V.
+  
+<img width="606" height="446" alt="day 3 lec 2 " src="https://github.com/user-attachments/assets/fdd77b87-f59f-400a-9455-7cc240e6a124" />
 
 
+## 28 L-2 SPICE simulation for CMOS inverter:
+
+* now, we focus on connectivity for both PMOS and NMOS in the inverter.
+* PMOS (M1) connections:
+                        Drain terminal: connected to OUT (output), Gate terminal: connected to IN (input), Source and substrate: connected to VDD
+* NMOS (M2) connections:
+                        Drain: connected to OUT, Gate: connected to IN, Source and substrate: connected to 0 (ground)
+Device dimensions for both: W = 0.375 µm, L = 0.25 µm
+* Connectivity summary:
+                      Output load capacitor: connected between OUT and 0
+                      Supply voltage: VDD (between VDD and 0)
+                      Input voltage (Vin): applied between IN and 0
+* SPICE simulation commands:
+                             .op for operating point
+                             .dc Vin 0 2.5 0.05 (sweeps Vin from 0 V to 2.5 V in 0.05 V steps)
+* Output voltage (VOUT) is measured for each input value
+* Model file:
+              The included model file (e.g., tsmc_025um_model.mod) contains all process information: oxide thickness, threshold voltage, and other coefficients.
+
+<img width="1407" height="633" alt="Screenshot 2026-02-26 at 12 41 08 AM" src="https://github.com/user-attachments/assets/1a0062ea-af30-4998-a38e-cfaa97eda695" />
+
+* Plotting & Results:
+* Set up the plot to show DC characteristics: plot OUT vs IN.
+* The transfer curve may be slightly shifted to the left.
+* Width variation experiment:
+* New simulation: WN = 0.375 µm, WP = 0.9375 µm, Ln = Lp = 0.25 µm (WP is now 2.5 times wider than NMOS).
 
 
 
 
 
+
+
+<img width="1407" height="633" alt="Screenshot 2026-02-26 at 12 41 08 AM" src="https://github.com/user-attachments/assets/1a0062ea-af30-4998-a38e-cfaa97eda695" />
 
 
 
