@@ -88,7 +88,7 @@ Consider these two scenarios:
 In the second scenario, the depletion region is larger because the body-source connection creates an additional reverse bias, increasing the depletion width.
 As a result, inversion in the second case occurs at a higher gate-to-source voltage compared to the first scenario.
 
------------------
+
    ## 3-L4: Threshold voltage with positive substarte potential: 
    
  <img width="1349" height="871" alt="Screenshot 2026-02-22 at 10 45 03 AM" src="https://github.com/user-attachments/assets/9d6c5779-38c1-4215-8269-a5d4e0e86542" />
@@ -104,7 +104,7 @@ The following equations represent the MOSFET operation and relationships:
 
 <img width="490" height="287" alt="Screenshot 2026-02-22 at 10 56 33 AM" src="https://github.com/user-attachments/assets/dfec0c88-4141-4b36-b512-e5e38ba82077" /> <img width="581" height="167" alt="Screenshot 2026-02-22 at 10 56 52 AM" src="https://github.com/user-attachments/assets/b2cb88c4-7fb2-4adf-8235-ad65be31cb82" />
 
--------------------
+
 ## NMOS Resisitve region and saturation region of operation:
 
 * Resistive Operation of NMOS
@@ -208,78 +208,111 @@ The following equations represent the MOSFET operation and relationships:
 * For a more accurate model, the effect of channel length modulation is included by introducing the parameter λ (lambda).
 
 
----------------------
-L1 Basic SPICE setup:
-we have seen many equations on threshold voltage, body effect coefficient , and fermilevel, where these are given correctly to get our simulation done neatly.
 
-linear region drain current equation is most better approximation of the drain current
- the technology constants for lower nodes are given by the industry and are just implimented as it is to get our values
- <img width="1328" height="627" alt="Screenshot 2026-02-23 at 10 01 02 AM" src="https://github.com/user-attachments/assets/b71cfa10-df1e-4f61-99b0-53e7d72e233a" />
+## Introduction to SPICE
+   ## 10 L-1 Basic SPICE setup:
+* we have understood what Threshold Voltage, Body Effect, and SPICE Simulation Parameters are and 
+* We have explored several equations involving threshold voltage, body effect coefficient, and Fermi level. These parameters must be accurately defined to ensure correct simulation results.
+* The linear region drain current equation provides the best approximation for drain current in that region.
+* For advanced (lower technology node) processes, the technology constants are specified by the industry and should be directly used in simulations.
+  
+<img width="1328" height="627" alt="Screenshot 2026-02-23 at 10 01 02 AM" src="https://github.com/user-attachments/assets/b71cfa10-df1e-4f61-99b0-53e7d72e233a" />
 
-the "yellow" marked are spice model parameters. 
-THE SPICE SETUP SHOULD LOOK LIKE 
+* The parameters marked in yellow are the key SPICE model parameters.
+
+* The SPICE setup for simulating MOSFET behavior should look like the examples below:
+
 <img width="688" height="631" alt="Screenshot 2026-02-23 at 10 04 32 AM" src="https://github.com/user-attachments/assets/93a9948a-3bd6-4129-8086-663caad138cb" />
 <img width="579" height="397" alt="Screenshot 2026-02-23 at 10 06 58 AM" src="https://github.com/user-attachments/assets/3fad0478-d8be-4866-8bcf-2003e7562a97" />
 
-L2 Circuit description in SPICE syntax
+## 11 L-2 Circuit description in SPICE syntax
 
-How to start SPICE simulation:
-1.define nodes
+## How to Start a SPICE Simulation
+* Define Nodes
+  
 <img width="753" height="622" alt="Screenshot 2026-02-23 at 10 09 31 AM" src="https://github.com/user-attachments/assets/0968afdb-7ab7-4f9d-9d1e-8598cb9f6dd8" />
 
-you can define any name for the nodes
-the nomenclature give for it is as 
-name of component , Drain, Gate, Source, Substrate, mosfet name(technology file) ,width , length  
-named R1, first terminal, last terminal, resistance
-Vdd, first terminal, last terminal, value
-Vin , first terminal,last terminal, value
- as seen in 
- <img width="667" height="220" alt="Screenshot 2026-02-23 at 10 16 12 AM" src="https://github.com/user-attachments/assets/45a48be3-d185-425c-966d-3021ba6b4801" />
+* You can assign any names to the nodes.
+* The typical nomenclature for defining components in SPICE is:
+* For MOSFETs:
+* Component Name, Drain, Gate, Source, Substrate, MOSFET Model Name (from technology file), Width, Length
+* For Resistors: R1, First Terminal, Second Terminal, Resistance Value
+* For Voltage Sources (Vdd, Vin): Vdd, First Terminal, Second Terminal, Value
+* Vin, First Terminal, Second Terminal, Value
+* Example of SPICE netlist naming conventions:
+* 
+<img width="667" height="220" alt="Screenshot 2026-02-23 at 10 16 12 AM" src="https://github.com/user-attachments/assets/45a48be3-d185-425c-966d-3021ba6b4801" />
 
-L3 define technology parameters
 
-Technology File:
-all model parameters comes as a package 
-the way you apply it is : 
+## L3 define technology parameters:
+
+## Technology File in SPICE
+* All model parameters are provided together as a package in a technology file.
+* To use the technology file in your simulation, include it as shown below:
+
 <img width="609" height="373" alt="Screenshot 2026-02-23 at 10 21 37 AM" src="https://github.com/user-attachments/assets/4897324c-860c-4b9d-b384-66ccb08415d4" />
-lastly save it as mod file 
+
+* Save the technology model parameters as a .mod file:
+
 <img width="870" height="606" alt="Screenshot 2026-02-23 at 10 23 30 AM" src="https://github.com/user-attachments/assets/44ce9d45-ba71-4b09-a8e7-d536fc26cd1e" />
 
- after that we need to add simulation commands 
+* After including the technology file, you need to add simulation commands to your SPICE netlist.
 
 
-L4- 
+## 13 L-4 First SPICE Simulation: 
+* Clone the Sky130 repository and navigate into its directory to access all SPICE resources:
+* Device cell definitions
+  
+* Complete process technology information
+
+* Each has separate model files for different corners.
+* These models define parameters like mobility, threshold voltage (VT), channel length modulation (λ), etc.
+* Sky130 only supports certain W/L combinations (for example, 1.26 µm / 0.15 µm).
+* Using unsupported width or length values will result in SPICE simulation errors.
+* To use the correct model in your netlist:
+
+* MOSFET device definition in SPICE: Mname D G S B model W=<width> L=<length>
+* For NFETs, connect the bulk (B) terminal to ground.
+* For PFETs, connect the bulk (B) terminal to VDD.
+* Run simulations using ngspice:
+* Use commands like plot I(M1) to view drain current trends.
+* Analyze the I<sub>D</sub>–V<sub>DS</sub> curves to observe linear and saturation region behavior
 <img width="1612" height="912" alt="image" src="https://github.com/user-attachments/assets/37c5e0f9-226c-4943-a9b3-22d096753b3f" />
 <img width="1378" height="1088" alt="image" src="https://github.com/user-attachments/assets/d7a0f238-226c-4c5d-86c6-9d47dd2044c0" />
 
 
-Lec 5 day 1 last :
+## 14 L-5 SPICE lab with sky130 models :
+* Exploring the Models Folder in Sky130
+* Inside the models folder of the Sky130 repository, you’ll find a file named all.spice.
+* Opening all.spice reveals the supported scales of Width (W) and Length (L) for the transistors.
+* These values indicate which W/L combinations are allowed for simulation using the Sky130 PDK.
 
 <img width="1656" height="1088" alt="image" src="https://github.com/user-attachments/assets/4d72dec0-4695-46be-b204-80d8a4f72afb" />
 
 <img width="1600" height="923" alt="image" src="https://github.com/user-attachments/assets/a798f9d4-73ac-41e8-9879-111ca598bf51" />
---------------------------------------------
 
-Day 2 lect 1 :
-Id–Vds curves were plotted for VGS = 0, 1.0, 1.5, 2.0, 2.5 V and graph was as.
 
-(Insert plot) → ![ID-VDS](images/id_vds.png)
+## Velocity Saturation and Basics of CMOS Inverter VTC:
+   ## SPICE simulation for lower nodes and velocity saturation effect:
+   ## 15 L-1  :
 
-now At VGS = 0, device stays in cutoff and ID ≈ 0.
+##  ID–VDS Characteristics and Short-Channel Effects
+* ID–VDS curves were plotted for VGS = 0, 1.0, 1.5, 2.0, and 2.5 V:
+* 
+<img width="2002" height="1298" alt="image" src="https://github.com/user-attachments/assets/347a1ef5-36d9-48be-bdf8-c15e60fc78c7" />
 
-but at low VDS, ID increases linearly → linear region.
+* At VGS = 0 V, the device remains in cutoff (ID ≈ 0).
+* For low VDS, ID increases linearly—this is the linear region.
+* When VDS ≥ (VGS − VT), the curves flatten out, indicating entry into the saturation region, as seen in the figure below:
+  
+<img width="1790" height="1066" alt="image" src="https://github.com/user-attachments/assets/f57d6bf2-d817-45d9-a960-964984218631" />
 
-When VDS ≥ (VGS − VT), curves enter saturation and start flattening like in the given figure.
+* The slight slope in the saturation region is caused by channel-length modulation.
+* For a short-channel device (L = 0.25 µm), you observe: Higher ID values
+* Stronger channel-length modulation effects
+* Reduced spacing between curves, mainly due to mobility degradation and velocity saturation
+* Even with the same W/L ratio, short-channel effects cause deviation from the ideal square-law behavior.
 
-(Insert linear vs sat) → ![Regions](images/regions.png)
-
-this slight slope in saturation is due to channel-length modulation.
-
-Short-channel device (L = 0.25 µm) shows higher ID and stronger modulation.
-
-here we observed reduced spacing between curves especially due to mobility degradation and velocity saturation.
-
-Even with same W/L, short-channel effects break ideal square-law behavior,.
 
 -------------------------------------------------------
 Day 2 lec 2 :
