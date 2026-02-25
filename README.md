@@ -383,110 +383,128 @@ How it works:
 * same in this observation we have ,the saturation current for lower nodes is low instead of being high. This is because Velocity saturation tends to saturate the device early so the peak current we see for lower nodes is much lesser than for higher nodes.
 
 
-Day 2 lec 5 :
-A deeply scaled MOSFET with W = 0.39 µm and L = 0.15 µm was simulated for ID–VDS and ID–VGS, with VDS and VGS swept up to 1.8 V.
+## 19 L-5 Labs sky130 Id vs Vgs :
 
-In the ID–VDS curves, the device shows a quadratic increase at low VDS, but quickly transitions into almost straight-line behavior as VDS grows.
-
-This linear portion appears because the carrier velocity saturates early at such short channel lengths, preventing ID from rising quadratically.
-
-At the highest gate bias (VGS = 1.8 V), the peak current is around ~196 µA, much lower than what a long-channel device with the same W/L would have given.
-
-The ID–VGS sweep at fixed VDS = 1.8 V shows an almost fully linear curve from start to end, with hardly any visible quadratic region.
-
-This happens because VDSAT is very small at L = 0.15 µm, so the device immediately enters the velocity-saturation regime where Vmin = VDSAT.
-
-As a result, ID becomes proportional to VGS, matching the unified short-channel model and confirming the dominance of velocity saturation.
-
-The combination of quadratic behavior at low VDS and linear behavior at high VDS clearly shows how strong electric fields cap carrier velocity
+* A short-channel MOSFET (W = 0.39 µm, L = 0.15 µm) was simulated with VDS and VGS swept up to 1.8 V.
+* ID–VDS curves: pics here
+  imgs
+* Show a quadratic rise at low VDS.
+* Quickly switch to a straight-line (linear) increase as VDS grows, due to early velocity saturation at this short channel length.
+* At VGS = 1.8 V, the peak current is ~196 µA—much less than a long-channel device with the same W/L.
+* ID–VGS sweep (at VDS = 1.8 V):
+* The curve is almost fully linear, with barely any quadratic region.
+* This is because VDSAT is very small for L = 0.15 µm. The device immediately enters velocity saturation (Vmin = VDSAT)
 
 
------------------------------------------------
-Day 2 lec 6
-ID–VGS curve at VDS = 1.8 V shows the device turning on sharply near its threshold, even though the rest of the curve is linear due to strong velocity saturation.
+## 20 L-6 Lans sky130 V<sub>t</sub>:
+* The ID–VGS curve at VDS = 1.8 V rises steeply near threshold, even though the rest of the curve is linear due to strong velocity saturation.
+* Drawing a tangent along the steepest part of the curve and extending it to the VGS axis allows you to extract the threshold voltage (VT).
+* This method gives VT ≈ 0.77 V, matching the expected turn-on point for a 0.15 µm short-channel MOSFET.
+* This works because the initial turn-on still follows the square-law (ID ∝ (VGS − VT)²) before velocity saturation dominates.
+* These results—early threshold, immediate velocity saturation, and linear current growth—confirm the key characteristics of short-channel device behavior.
 
-By drawing a tangent along the steepest rising part of the curve and extending it to the VGS axis, the threshold voltage can be extracted.
+## CMOS Voltage Transfer Characteristics:
 
-This extrapolation gives VT ≈ 0.77 V, matching the expected onset of conduction for the 0.15 µm short-channel MOSFET.
+## 21 L-1 MOSFET as Switch:
+* MOSFET as a Digital Switch & CMOS Inverter Basics
+* At this point, a MOSFET can be understood more as a digital switch than an analog device, which is helpful for CMOS logic.
+  
+<img width="262" height="262" alt="day 2 part 2 lec1" src="https://github.com/user-attachments/assets/65273a2e-e1c2-453b-adce-630491f1e693" />
+ 
+* A MOSFET turns ON when its gate-to-source voltage (|VGS|) is greater than its threshold (|VT|), and stays OFF otherwise.
+* The rule |VGS| ≥ |VT| works for both NMOS and PMOS.
+* A CMOS inverter consists of a PMOS on top and an NMOS on the bottom, both controlled by the same input and sharing a common output:
+  
+<img width="422" height="410" alt="day 2 part 2 lec 1 1" src="https://github.com/user-attachments/assets/d31603c4-b619-4c85-8b3a-0f1208994e0f" />
 
-The method works because the turn-on region still follows the square-law behavior ID ∝ (VGS − VT)² before velocity saturation takes over.
+* When the input is high:
+                        The NMOS turns on conversely The PMOS turns off
+* The output is pulled down to ground, inverting the input signal
+* This switch-based view makes it easy to build the inverter truth table and later analyze the Voltage Transfer Characteristic (VTC) for CMOS logic gates.
+  
 
-Combined with the earlier ID–VDS and ID–VGS results, this confirms a complete short-channel picture: early VT, immediate velocity saturation, and linear current growth.
+## 22 L-2 Introduction to standard voltage current parameters :
+* To construct the CMOS inverter’s VTC, start by examining the two extreme input cases: VIN = VDD and VIN = 0. In both cases, replace each transistor with its ON/OFF switch equivalent.
+* When VIN = VDD (input high):
 
-------------------------------------------------
-Day 2 Part 2 lec 1 :
-At this stage, the MOSFET is viewed less like an analog device and more like a digital switch, which makes understanding CMOS logic easier.
+* The NMOS turns ON and acts like a resistive path to ground.
+* The PMOS turns OFF.
+* The output node discharges through the NMOS until it reaches 0 V.
+* When VIN = 0 (input low):
 
-A MOSFET basically turns ON when its gate-to-source voltage crosses the threshold and stays OFF when it doesn’t, and expressing this as |VGS| ≥ |VT| gives one rule for both NMOS and PMOS.
+* The PMOS turns ON and conducts like a resistor to VDD.
+* The NMOS turns OFF.
+* The output node charges up to VDD through the PMOS.
+* The ON resistances, RN for NMOS and RP for PMOS, are not constant—they depend on the operating region of each device. These resistances will affect the shape of the VTC and the inverter’s rise/fall delays.
 
-A CMOS inverter is just a PMOS on top and an NMOS on the bottom, both driven by the same input and sharing a common output node.
+* To analyze switching transitions, we assign voltage and current labels (like VGSN, VGSP, VDSN, IDSN, IDSP, etc.) to both transistors, so their operation can be examined together.
 
-When the input is high, the NMOS turns on while the PMOS turns off, which pulls the output down to ground and creates the inverter’s “flipped” result.
+<img width="1055" height="643" alt="day 2 part 2 lec 2 1" src="https://github.com/user-attachments/assets/ab209730-72dc-4d8c-9788-bebb21f84644" />
 
-This simple switch-based perspective is what we use to build the inverter truth table and later derive the Voltage Transfer Characteristic (VTC).
-
-
-----------------------------------------------
-Day 2 part 2 lec 2 :
-To build the CMOS inverter’s VTC, we first look at the two extreme input cases—VIN = VDD and VIN = 0—and replace each transistor with its ON/OFF switch equivalent.
-
-When the input is high, the NMOS turns ON and acts like a resistive path to ground, while the PMOS turns OFF, leaving the output node to discharge through the NMOS until it reaches 0 V.
-
-When the input is low, the PMOS becomes the conducting device and behaves like a resistor to VDD, while the NMOS is OFF, allowing the output node to charge back up to VDD.
-
-These ON resistances, RN for NMOS and RP for PMOS, are not fixed values but depend on device operating regions, and they later govern the VTC shape and the rise/fall delays.
-
-To prepare for the full VTC derivation, voltage and current labels like VGSN, VGSP, VDSN, IDSP, etc., are defined so both transistors can be analyzed together during the switching transition.
-
-With these two boundary cases and naming conventions set, the next step is to solve both device equations simultaneously and find the switching point where NMOS and PMOS currents balance.
+* With the two boundary cases and naming conventions established, the next step is to solve both transistor equations at once. This allows us to find the switching point where NMOS and PMOS currents are equal—the heart of the VTC.
 
 
------------------------------------------------
-day 2 part 2 lec 3 :
-Before deriving the CMOS inverter’s VTC, we first clean up our voltage naming: NMOS uses VGSN and PMOS uses VGSP, because PMOS voltages naturally come out negative and need their own notation to avoid sign mistakes.
+## 23 L-3 PMOS/NMOS Drain current vs Drain Voltage :
 
-The lecture also clarifies current directions: the NMOS pulls current upward through the output node when discharging, while the PMOS pushes current downward when charging, which means IDSP = –IDSN and this relationship becomes the heart of VTC derivation.
+* Before we start deriving the VTC for a CMOS inverter, let’s get our voltage names straight:
+* For NMOS, we use VGSN (gate-to-source voltage) and VDSN (drain-to-source voltage).
+* For PMOS, we use VGSP and VDSP. PMOS voltages come out negative, so it’s important to use different symbols to avoid confusion.
+* 
+<img width="356" height="301" alt="day 2 lec 3 1" src="https://github.com/user-attachments/assets/6f2ee424-4328-4e85-b838-297b958b90a7" />
 
-For the NMOS, things are simple—its VGSN equals VIN and its VDSN equals VOUT, since its source is grounded; for the PMOS, both VGS and VDS become negative because its source is tied to VDD.
+<img width="322" height="190" alt="day2 lec 3 1 5" src="https://github.com/user-attachments/assets/a6dc199e-97b5-47ae-bc7f-bceaebd29dce" />
 
-Once these voltages are defined, the NMOS load curve (IDSN vs VDSN) and the PMOS load curve (IDSP vs VDSP) can be plotted; the PMOS curves are essentially mirror images of the NMOS curves in the negative quadrant.
+* NMOS pulls current up through the output (when discharging).
+* PMOS pushes current down (when charging).
+* The relationship between them is: IDSP = –IDSN. This is really important for figuring out the VTC.
+* For NMOS:
+          VGSN = VIN (because the source is at ground)
+          VDSN = VOUT
+* For PMOS:
+          Both VGS and VDS are negative (since the source is at VDD).
+  
+<img width="713" height="441" alt="day 2 lec 3 2" src="https://github.com/user-attachments/assets/1487ff52-0145-4c42-bb17-ba564e8d5665" />
 
-These two curve families matter because the VTC is simply the point where NMOS sinking current and PMOS sourcing current balance—meaning IDSN(VIN, VOUT) = –IDSP(VIN, VOUT)—and this balance defines VOUT for every input value.
+* plot the NMOS load curve (IDSN vs VDSN) and the PMOS load curve (IDSP vs VDSP). The PMOS curve is basically a mirror of the NMOS curve in the negative direction.
 
-With voltage definitions, current directions, and both load curves in place, the next lecture will plug in the nonlinear drain-current equations for NMOS and PMOS and solve for VOUT as VIN varies, finally producing the CMOS inverter’s VTC.
 
---------------------------------------------
-day2 part 2 lec 4 :
-Inside a CMOS inverter, we technically have four transistor voltages (VGSN, VDSN, VGSP, VDSP) and two drain currents (IDSN, IDSP), but digital logic only “sees” VIN and VOUT — everything else is internal.
+## 24 L-4 Step1 - Convert PMOS gate-source voltage to Vin :
 
-To derive the VTC, the lecture focuses on rewriting every PMOS and NMOS voltage in terms of just VIN and VOUT, since the final curve must be VOUT as a function of VIN only.
+* In a CMOS inverter, there are four transistor voltages (VGSN, VDSN, VGSP, VDSP) and two currents (IDSN, IDSP), but in digital logic, we care about only VIN and VOUT.
+* To get the VTC (VOUT vs VIN), we rewrite all PMOS and NMOS voltages in terms of VIN and VOUT.
+* First, we convert the PMOS gate voltage using VIN = VGSP + VDD, so everything is on the VIN axis.
+* Next, since PMOS current flows opposite to NMOS, we use IDSN = –IDSP to plot both on the same current axis.
+* This lets us directly compare NMOS and PMOS load curves using just VIN and IDSN.
+<img width="1088" height="764" alt="day 2 lec 4 " src="https://github.com/user-attachments /assets/4b97d6dc-43f8-4607-8f01-ed040b18c7c5" />
+   
+* The VTC is found where NMOS and PMOS currents are equal (intersection point).
 
-The first transformation is converting the PMOS gate voltage VGSP into the input voltage using VIN = VGSP + VDD, which shifts negative VGSP values into the positive VIN axis.
 
-Next, the PMOS drain current is mirrored into NMOS coordinates using IDSN = –IDSP, because PMOS current flows in the opposite direction, giving us a PMOS-equivalent load curve expressed entirely in terms of positive current.
 
-After converting each PMOS point (VGSP, IDSP) into (VIN, IDSN), the PMOS load curve becomes directly comparable to NMOS curves, letting both devices be plotted on the same VIN–IDSN axes.
+## 25 L-5 Step2 & 3 Convert PMOS and NMOS drain source voltage to Vout:
 
-This step is crucial because the CMOS VTC comes from solving where NMOS current equals PMOS current; once both sides are rewritten as IDSN(VIN, VOUT), their intersection gives the output voltage.
+* Both PMOS and NMOS devices are described only by VIN, VOUT, and IDSN—perfect for deriving the CMOS inverter VTC.
+  
+<img width="1074" height="755" alt="day 2 lec 5 2" src="https://github.com/user-attachments/assets/095fcfba-eee6-4c5b-aa90-e7616cebcee9" />
+<img width="692" height="673" alt="day 2 lec 5 3" src="https://github.com/user-attachments/assets/76767468-5894-4ced-b73f-6d63f4c74ec4" />
+* The key step is rewriting the PMOS drain voltage as VDSP = VOUT – VDD, so now every PMOS data point is just (VIN, VOUT, IDSN).
+* For NMOS, it’s even easier: VGSN = VIN, VDSN = VOUT—the NMOS I–V curve already maps to (VIN, VOUT, IDSN).
+* Now, both PMOS and NMOS load curves are in the same format and ready to be combined to find the VTC.
+  
+<img width="1079" height="485" alt="day2 lec 5 4" src="https://github.com/user-attachments/assets/1a0a40f3-5452-4f83-b5d7-bfc054162d0c" />
 
-The lecture ends with VGSP and IDSP fully eliminated, and the next one will remove the remaining internal voltages (VDSN and VDSP) so the final VTC equation can be formed purely from VIN and VOUT.
 
-------------------------------------------
+## 26 L-6 Merge PMOS and NMMOS Load curves and plot VTC:
 
-day 2 part 2 lec  5:
-This lecture finishes the job of removing all internal PMOS/NMOS voltages so that both devices can finally be described only with VIN, VOUT, and the current IDSN — exactly what we need for the CMOS VTC.
-
-The key step is converting the PMOS drain-to-source voltage using VDSP = VOUT – VDD, which shifts the entire PMOS I–V curve horizontally and replaces the negative VDSP axis with a clean VOUT axis.
-
-After this shift, every PMOS data point can now be expressed as (VIN, VOUT, IDSN) — meaning VGSP, VDSP, and IDSP are completely eliminated, and the PMOS load curve is now in inverter-ready form.
-
-The NMOS side is much simpler: since its source is at ground, VGSN = VIN and VDSN = VOUT, so the NMOS I–V curves directly become the NMOS load curve just by renaming axes.
-
-With both curves expressed as IDSN(VIN, VOUT), the stage is set: the VTC comes from solving where NMOS current equals PMOS current, and this merging of their load curves forms the complete VOUT vs VIN characteristic.
-
-----------------------------------------
-day 2 part 2 lec 6 :
-The lecture explains that the CMOS VTC comes from overlaying the NMOS and PMOS load curves and finding where their currents balance, since both devices share the same VIN, VOUT, and output current. Once both curves are expressed as IDSN(VIN, VOUT), the process is simple: for each VIN, take the NMOS and PMOS curves at that value and their intersection gives the corresponding VOUT. As VIN sweeps from 0 to 2 V, the intersections move from VOUT = 2 V to VOUT = 0 V, with the sharp switching region appearing around VIN ≈ 1 V when both devices are in saturation. Connecting these points produces the classic S-shaped inverter characteristic. This approach also makes it clear which region each transistor operates in at every VIN, setting up the analysis of gain, noise margins, and delay.
+* The CMOS VTC is created by overlaying the NMOS and PMOS load curves and finding where their currents are equal.
+* With both curves expressed as IDSN(VIN, VOUT), you simply look for their intersection at each VIN to get the corresponding VOUT.
+* As VIN sweeps from 0 to 2 V, the intersection points move from VOUT = 2 V (output high) to VOUT = 0 V (output low).
+* The sharp transition—the inverter’s “switch”—happens around VIN ≈ 1 V when both transistors are in saturation.
+* Connecting these intersection points creates the classic S-shaped VTC curve.
+* This method also shows which region (cutoff, linear, saturation) each device is in for every value of VIN, which is useful for analyzing gain, noise margins, and delay.
+  
+<img width="663" height="318" alt="day2 lec 6  1" src="https://github.com/user-attachments/assets/4a5cf6a8-c1c4-47e7-8424-138e9a57b635" />
+<img width="1073" height="765" alt="day lec 6 2" src="https://github.com/user-attachments/assets/200a399c-3653-4b62-9d94-041fd4d1f8dd" />
 
 
 ------------------------------------------
