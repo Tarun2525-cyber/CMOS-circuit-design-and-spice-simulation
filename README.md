@@ -357,26 +357,32 @@ The following equations represent the MOSFET operation and relationships:
                Short-channel: ID–VGS curve turns linear at high VGS due to velocity saturation.
 
 
---------------------------------------------
-Day 2 lec 4 
-The unified MOSFET model uses two key terms—VGT = VGS − VT and Vmin = min(VGT, VDS, VDSAT)—to decide which region the device operates in.
 
-With this approach, the same equation covers cutoff, linear, saturation, and velocity-saturation regions without switching formulas.
+## 18 L-4 Velocity Saturation Drain current Model:
 
-For VGT < 0, the device is off and ID = 0; once VGT ≥ 0, the drain current follows the unified expression involving VGT and Vmin.
+* The unified MOSFET model uses:
+                                  VGT = VGS − VT
+                                  Vmin = min(VGT, VDS, VDSAT)
+* This approach lets one equation describe all regions: cutoff, linear, saturation, and velocity saturation.
+How it works:
+* If VGT < 0, the MOSFET is off (ID = 0).
+* If VGT ≥ 0, the drain current (ID) is calculated using VGT and Vmin.
+* Vmin = VGT: Device is in saturation (long-channel), and ID ∝ VGT².
+* Vmin = VDS: Device is in the linear region, and ID grows with VDS.
+* Vmin = VDSAT (short-channel): Device is in velocity saturation, so ID grows linearly with VGS.
 
-When Vmin = VGT, the device enters saturation and the model reduces to the familiar long-channel equation ID ∝ VGT².
+<img width="798" height="445" alt="day 2 lec 4 1" src="https://github.com/user-attachments/assets/35f47b7b-3ec1-43cf-ad27-efd7bd4ff9e6" />
+<img width="665" height="168" alt="day 2 part 1 lec 4 1" src="https://github.com/user-attachments/assets/c4db46d9-3e40-433c-afd2-fee0a5dec917" />
+<img width="669" height="355" alt="Screenshot 2026-02-25 at 10 54 26 PM" src="https://github.com/user-attachments/assets/1f2b6bb6-0328-4686-8692-1ad892b2148c" />
+<img width="613" height="338" alt="Screenshot 2026-02-25 at 10 54 42 PM" src="https://github.com/user-attachments/assets/c6decd5b-d93f-48ad-9b80-51d3d30f99a6" />
+<img width="632" height="364" alt="Screenshot 2026-02-25 at 10 54 55 PM" src="https://github.com/user-attachments/assets/b4713d07-ef68-42a9-9fa3-4f2bf037d562" />
+<img width="620" height="295" alt="Screenshot 2026-02-25 at 10 55 05 PM" src="https://github.com/user-attachments/assets/587a2303-c4a6-495c-af04-1c3a3f6e656a" />
 
-When Vmin = VDS, the device is in the linear region, giving the standard resistive form where ID grows with VDS.
-
-When Vmin = VDSAT (short-channel only), the MOSFET enters velocity saturation, causing ID to depend linearly on VGS instead of quadratically.
-
-In this region, carrier velocity has reached its maximum limit, so extra gate voltage only increases charge, not speed—flattening the current.
-
-Because velocity saturation appears early in short-channel devices, they show lower peak currents even when W/L is kept the same
+* In velocity saturation, carrier speed hits its max—so extra VGS just adds charge, not speed, resulting in a flatter ID curve.
+* Short-channel devices reach velocity saturation earlier, so they show lower peak currents, even with the same W/L ratio.
+* same in this observation we have ,the saturation current for lower nodes is low instead of being high. This is because Velocity saturation tends to saturate the device early so the peak current we see for lower nodes is much lesser than for higher nodes.
 
 
----------------------------------------
 Day 2 lec 5 :
 A deeply scaled MOSFET with W = 0.39 µm and L = 0.15 µm was simulated for ID–VDS and ID–VGS, with VDS and VGS swept up to 1.8 V.
 
