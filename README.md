@@ -314,50 +314,47 @@ The following equations represent the MOSFET operation and relationships:
 * Even with the same W/L ratio, short-channel effects cause deviation from the ideal square-law behavior.
 
 
--------------------------------------------------------
-Day 2 lec 2 :
-This experiment looks at how the drain current changes with gate voltage when VDS is fixed at 2.5 V, comparing a long-channel MOSFET (L = 1.2 µm) and a short-channel MOSFET (L = 0.25 µm).
 
-The SPICE setup remains the same except for a single sweep command that scans VGS from 0 to 2.5 V while holding VDS constant at 2.5 V.
+## 16 L-2 
+## Drain current vs Gate voltage for long and short channel devices
+* Observation on how drain current (ID) responds to changes in gate voltage (VGS) for long and short MOSFETs, with VDS fixed at 2.5 V.
 
-For the long-channel device, the ID–VGS curve follows the expected square-law behavior, showing a smooth parabolic rise as VGS increases.
+<img width="1030" height="499" alt="Screenshot 2026-02-24 at 11 42 51 AM" src="https://github.com/user-attachments/assets/d6141e30-bf00-4bd7-b84f-0d8598d47099" />
 
-The current stays near zero in the cutoff region, begins rising near the threshold voltage, and then grows quadratically for the rest of the sweep—matching the classic long-channel saturation equation.
+* For the long-channel MOSFET (L = 1.2 µm), the ID–VGS curve is smooth and curved (parabolic).
+* For the short-channel MOSFET (L = 0.25 µm), the curve starts curved but quickly becomes a straight line as VGS goes up.
+* This happens because, in short devices, electrons reach their top speed (velocity saturation) much sooner.
+* So, short-channel MOSFETs provide more current, but the relationship between ID and VGS is more linear, not curved.
+* As MOSFETs get shorter, their behavior changes, so we need better models to predict how they work.
 
-The short-channel device begins similarly, with quadratic behavior at low VGS, but the curve quickly deviates from the square-law pattern.
 
-As VGS increases further, the current stops following a parabola and instead becomes almost linear, a direct result of velocity saturation in the shorter channel.
 
-This shift from quadratic to linear behavior causes the short-channel device to produce higher currents and a noticeably straighter ID–VGS curve compared to the long-channel MOSFET.
+## 17 L-3  : 
+   ## Velocity saturation at lower and higher electric fields
+   
+## ID–VGS Curves: Long vs. Short Channel MOSFETs
+* Sweeping VGS from 0 to 2.5 V at a fixed VDS = 2.5 V gives the following ID–VGS curves for both long- and short-channel MOSFETs:
 
-Side-by-side, the long-channel device maintains its curved, quadratic profile, while the short-channel device bends upward initially and then transitions into a straight-line trend.
+<img width="1081" height="532" alt="Day 2 lec3 " src="https://github.com/user-attachments/assets/c580e84b-95dc-462d-8097-5338ac39ca91" />
 
-Physically, the long-channel MOSFET allows carriers to accelerate normally, but the short-channel one creates such high electric fields that carriers hit their maximum velocity, breaking the square-law model.
+* Long-channel MOSFETs (blue curve) follow ideal square-law behavior:
+* ID ∝ (VGS – VT)² across the whole range.
+* Short-channel MOSFETs (green curve) start off quadratic at low VGS, then quickly shift to a straight-line (linear) rise at higher VGS.
+* This change happens because, in short-channel devices, the electric field gets so high that carriers reach their saturation velocity (VSAT) much sooner.
+* Once velocity is saturated, raising VGS only increases the amount of charge—not the speed of carriers—so ID rises linearly with VGS.
+  
+<img width="814" height="418" alt="day 2 lec 3 1" src="https://github.com/user-attachments/assets/fe5dbd6c-a91b-4f16-a62d-3b41c604a283" />
 
-Overall, the comparison clearly shows how shrinking channel length introduces strong short-channel effects, making the ID–VGS relationship linear and signaling the need for advanced models like BSIM in deep-submicron technologies.
+* The point where this transition occurs is related to the critical electric field (EC = VSAT / μn).
+* Modern models use a unified approach (with Vmin = min(VGT, VDS, VDSAT)) to describe all regions of operation, including velocity saturation.
+  
+<img width="540" height="342" alt="day 2 lec 3 2" src="https://github.com/user-attachments/assets/e6602371-f669-4ccf-8fc9-a806e781859a" />
 
----------------------------------------------------
-
-Day 2 lec 3 :
-Sweeping VGS from 0 to 2.5 V at a fixed VDS = 2.5 V gives ID–VGS curves for both long- and short-channel MOSFETs.
-
-The long-channel device follows pure square-law behavior, with ID ∝ (VGS – VT)² across the entire sweep.
-
-The short-channel MOSFET matches the quadratic trend only at low VGS but shifts to a linear rise at higher VGS.
-
-This shift happens because the electric field becomes so high that carriers reach their saturation velocity (VSAT).
-
-Once velocity saturates, increasing VGS only increases charge, not carrier speed → resulting in linear ID–VGS behavior.
-
-The transition point is tied to the critical field EC = VSAT / μn.
-
-Modern analysis uses a unified model with Vmin = min(VGT, VDS, VDSAT) to cover all operating regions.
-
-Short-channel devices now have four regions: cutoff, linear, classical saturation, and velocity saturation.
-
-This velocity saturation effect is dominant in deep-submicron devices and breaks long-channel square-law assumptions.
-
-Overall, the comparison shows that long-channel MOSFETs stay quadratic, while short-channel MOSFETs turn linear at high VGS due to velocity saturation.
+* Short-channel MOSFETs now have four regions: cutoff, linear, classical saturation, and velocity saturation.
+* Velocity saturation dominates in deep-submicron devices and breaks the old square-law assumption.
+* In summary:
+               Long-channel: ID–VGS curve stays curved (quadratic).
+               Short-channel: ID–VGS curve turns linear at high VGS due to velocity saturation.
 
 
 --------------------------------------------
