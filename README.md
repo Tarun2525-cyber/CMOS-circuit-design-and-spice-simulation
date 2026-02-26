@@ -734,15 +734,52 @@ Practical Case:
 * Real devices have resistance and capacitance, so output transitions over a range—not instantly, Slope is finite (not vertical), and output might not hit exactly 0 V or VDD.
 
 ## 37 L-2 Noise margin voltage parameters:
+* The ideal inverter transfer curve has a perfectly vertical (infinite slope) transition at the switching threshold its shown in right side of curve in the below figure.
+* In reality (practical curve), the transition is more gradual because of device resistances and capacitances it is shown in the below figure left sided curve.
+* The practical VTC shows a sloped transition region, not an abrupt drop, which is what we actually see in measurements and simulations.
+
+<img width="905" height="502" alt="Screenshot 2026-02-26 at 4 33 21 PM" src="https://github.com/user-attachments/assets/abf1f694-ad7a-4adc-957d-ea475650b255" />
+
+<img width="529" height="437" alt="Screenshot 2026-02-26 at 4 29 44 PM" src="https://github.com/user-attachments/assets/59f7392f-9223-45e6-9b34-26f292b580f0" />
 
 
+## 38 L-3 Noise margin equation and summary:
+* Noise Margin and Voltage Levels – Student Notes
+To find noise margin, we plot voltage levels (VOH, VIH, VIL, VOL) on the inverter’s transfer characteristic.
 
+<img width="409" height="428" alt="Screenshot 2026-02-26 at 4 50 51 PM" src="https://github.com/user-attachments/assets/11f18864-b282-4926-a85e-c23063f1fd0c" />
 
+* These values are specifications for the chip and must be well defined.
+* Logic 1: Input between VIH and VOH; output stays HIGH.
+* Logic 0: Input between VOL and VIL; output stays LOW.
+* If a noise bump falls between VIH and VOH or between VIL and VOL, it’s still safe—the circuit interprets the logic correctly.
+* The region between VIL and VIH is called the undefined region—the output could be interpreted as either 0 or 1.
+* If a glitch lands in this undefined area, it’s risky and the design should be improved.
 
+<img width="919" height="565" alt="Screenshot 2026-02-26 at 4 50 30 PM" src="https://github.com/user-attachments/assets/a2e35e5b-b707-4140-ae69-6183cabfd371" />
 
+  
+* Summary: Noise margin defines how much noise can be tolerated. If noise stays out of the undefined region, the circuit works safely. If not, action may be needed
 
+## 39 L-L4 Noise margin variation with respect to PMOS width:
+* By looking at the inverter curves, we can see if the CMOS inverter is robust (good noise margin, reliable logic levels).
+* The PMOS helps hold charge on the output capacitor and provides a low-resistance path when output should be high.
+* Increasing PMOS width usually increases noise margin—the inverter becomes more robust but with limitations.
+  <img width="2834" height="1310" alt="image" src="https://github.com/user-attachments/assets/f3b07cec-3d36-4799-a14a-f48377114944" />
+  <img width="2820" height="1258" alt="image" src="https://github.com/user-attachments/assets/659a9464-5e79-458a-9a9e-f8eda67220c8" />
+  <img width="2894" height="1314" alt="image" src="https://github.com/user-attachments/assets/2b7bd9dd-1f99-441d-88a0-c47138e87c0c" />
+  <img width="2832" height="1276" alt="image" src="https://github.com/user-attachments/assets/27276aba-e449-4a42-93dd-d755f1a9c8e6" />
+  <img width="1397" height="645" alt="Screenshot 2026-02-26 at 5 13 32 PM" src="https://github.com/user-attachments/assets/7bfdfa8c-e33e-49fa-a46d-f647a1174c62" />
 
+  
+* However, there are limits to how wide you can make the PMOS:
+* Fabrication constraints make it hard to make PMOS more than ~2 times wider than NMOS.
+* Very large PMOS widths (like 5× NMOS) are not practical.
+* The area of the CMOS inverter is also important for digital design—it affects chip size and layout.
 
+<img width="1896" height="1290" alt="image" src="https://github.com/user-attachments/assets/ed054757-248c-4f55-a44a-205e9e70d7db" />
+
+<img width="969" height="639" alt="Screenshot 2026-02-26 at 5 09 52 PM" src="https://github.com/user-attachments/assets/36d4a5bd-b7ae-4336-a580-075445a5aa7b" />
 
 
 
