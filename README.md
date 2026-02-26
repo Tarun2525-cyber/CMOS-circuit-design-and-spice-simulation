@@ -394,7 +394,9 @@ How it works:
 * ID–VGS sweep (at VDS = 1.8 V):
 * The curve is almost fully linear, with barely any quadratic region.
 * This is because VDSAT is very small for L = 0.15 µm. The device immediately enters velocity saturation (Vmin = VDSAT)
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/7a9ef779-3cb9-4574-9f30-8c8e74c26d77" />
 
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/80a4b7c2-ebdd-44a2-aaca-70ae57df9b29" />
 
 ## 20 L-6 Lans sky130 V<sub>t</sub>:
 * The ID–VGS curve at VDS = 1.8 V rises steeply near threshold, even though the rest of the curve is linear due to strong velocity saturation.
@@ -402,6 +404,10 @@ How it works:
 * This method gives VT ≈ 0.77 V, matching the expected turn-on point for a 0.15 µm short-channel MOSFET.
 * This works because the initial turn-on still follows the square-law (ID ∝ (VGS − VT)²) before velocity saturation dominates.
 * These results—early threshold, immediate velocity saturation, and linear current growth—confirm the key characteristics of short-channel device behavior.
+  
+  <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/5a12a8e4-c45b-48f5-9916-61126a7b506e" />
+
+  <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/47034736-d5ff-4b10-aafa-b88f5b2fde04" />
 
 ## CMOS Voltage Transfer Characteristics:
 
@@ -508,13 +514,9 @@ How it works:
 <img width="663" height="318" alt="day2 lec 6  1" src="https://github.com/user-attachments/assets/4a5cf6a8-c1c4-47e7-8424-138e9a57b635" />
 <img width="1073" height="765" alt="day lec 6 2" src="https://github.com/user-attachments/assets/200a399c-3653-4b62-9d94-041fd4d1f8dd" />
 
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/7a9ef779-3cb9-4574-9f30-8c8e74c26d77" />
 
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/80a4b7c2-ebdd-44a2-aaca-70ae57df9b29" />
 
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/5a12a8e4-c45b-48f5-9916-61126a7b506e" />
 
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/47034736-d5ff-4b10-aafa-b88f5b2fde04" />
 
 
 
