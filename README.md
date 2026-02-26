@@ -508,6 +508,14 @@ How it works:
 <img width="663" height="318" alt="day2 lec 6  1" src="https://github.com/user-attachments/assets/4a5cf6a8-c1c4-47e7-8424-138e9a57b635" />
 <img width="1073" height="765" alt="day lec 6 2" src="https://github.com/user-attachments/assets/200a399c-3653-4b62-9d94-041fd4d1f8dd" />
 
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/7a9ef779-3cb9-4574-9f30-8c8e74c26d77" />
+
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/80a4b7c2-ebdd-44a2-aaca-70ae57df9b29" />
+
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/5a12a8e4-c45b-48f5-9916-61126a7b506e" />
+
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/47034736-d5ff-4b10-aafa-b88f5b2fde04" />
+
 
 
 ## CMOS Switching threshold and dynamic simulations:
