@@ -660,20 +660,80 @@ Case B: (WP/WN) = 1.5 → VM ≈ 0.98 V
 
 
 
+## 33 L-4 Static and Dynamic simulation of CMOS inverter:
+* Circuit: NMOS W/L = 0.375/0.25, PMOS W/L = 0.375/0.25
+* Run a DC simulation and plot the transfer curve (Vout vs Vin).
+* Finding Switching Threshold (Vm)by drawing a 45° line from the origin on the DC curve.
+* Where this line crosses the curve is Vm (since Vin = Vout).
+* For equal NMOS/PMOS sizes: Vm ≈ 0.99 V
+  
+* Rise & Fall Delay Calculation
+* How to Measure:
+                 Measure delay between 50% points (1.25 V) of input and output.
+* Rise Delay:
+
+        Input falls, output rises.
+        Output at 1.25 V: t₁ = 1.0144 ns
+        Input at 1.25 V: t₂ = 1.1627 ns
+        Rise Delay = t₂ − t₁ ≈ 148 ps
+* Fall Delay:
+
+        Input rises, output falls.
+        Output at 1.25 V: t₁ = 2.00486 ns
+        Input at 1.25 V: t₂ = 2.07653 ns
+        Fall Delay = t₂ − t₁ ≈ 71 ps
+<img width="1137" height="564" alt="Screenshot 2026-02-26 at 2 13 51 PM" src="https://github.com/user-attachments/assets/640929b0-b434-445d-bcae-71e99d834c31" />
 
 
+## 34 L-5 Static and Dynamic simulation of CMOS inverter with increased PMOS width:
+* Here we are incresing the width of PMOS in integral terms and repeating the content from the previous lecture:
+  
+<img width="2274" height="1128" alt="image" src="https://github.com/user-attachments/assets/ab58018e-b6bc-4d65-9cd0-5c408ead92f0" />
+<img width="2542" height="1214" alt="image" src="https://github.com/user-attachments/assets/286aed76-ace6-4335-a4bd-9bc748c1937a" />
+<img width="2572" height="1190" alt="image" src="https://github.com/user-attachments/assets/9a299e12-5fd6-4ff8-b0e4-ca6ef20f219a" />
+<img width="2566" height="1168" alt="image" src="https://github.com/user-attachments/assets/00dbda92-a5b5-482a-8a33-805d30a3c984" />
+<img width="2554" height="1150" alt="image" src="https://github.com/user-attachments/assets/b193634e-625b-4284-8408-c9d2732c2325" />
+* we can see the change in rise delay, fall delay compare to the first simulation.
+* 
+<img width="1604" height="598" alt="image" src="https://github.com/user-attachments/assets/347420d2-c1af-45f0-b5dd-b95c065cc387" />
 
 
+## 35 L-6 Applications of CMOS inverter in clock network and STA :
+* when PMOS size is varied between 2× and 3× of the NMOS, the switching threshold only shifts by about 50 mV.
+* This is a huge advantage because during fabrication, the actual transistor size may not come out exactly as planned but it might be slightly off.
+  
+  <img width="1079" height="263" alt="Screenshot 2026-02-26 at 3 29 57 PM" src="https://github.com/user-attachments/assets/99cb9b76-92e0-4435-bac8-0ff72f826c3d" />
+
+* Here Vm barely changes across a range of PMOS sizes, the inverter still behaves as we require even with slight off in fabrication.
+* At a certain PMOS size (around 2× to 2.5× of NMOS), rise delay ≈ fall delay -> This symmetry is critical for clock cells
+* A clock buffer with matched rise/fall delay preserves the waveform shape all the way to the endpoint.
+  
+  <img width="1433" height="861" alt="Screenshot 2026-02-26 at 3 30 18 PM" src="https://github.com/user-attachments/assets/9def9ece-3f1b-41c4-8610-b6172189f399" />
+
+* This is achieved by sizing PMOS such that PMOS resistance ≈ NMOS resistance
 
 
+## CMOS Noise Margin robustness evaluation:
+   ## Static behaviour evaluation - CMOS Noise Margin robustness evaluation
+   ## 36 L-1 Introduction to Noise Margin 
+   
+*  **Noise Margin** : It is a measure of how much unwanted electrical noise a logic circuit can tolerate on its input without producing an incorrect output.
+*  <img width="354" height="370" alt="Screenshot 2026-02-26 at 4 05 41 PM" src="https://github.com/user-attachments/assets/f077a6de-2e1c-49e0-8e2c-45a655cb0fb2" />
+<img width="386" height="329" alt="Screenshot 2026-02-26 at 4 05 49 PM" src="https://github.com/user-attachments/assets/6bb60b6b-8fac-460c-9594-a93607e4b33c" />
 
+<img width="1422" height="868" alt="image" src="https://github.com/user-attachments/assets/8a1c9eab-43be-4bb3-bc8d-88a98148fef3" />
+<img width="497" height="67" alt="Screenshot 2026-02-26 at 4 07 59 PM" src="https://github.com/user-attachments/assets/c1ebcb76-b479-4f4a-887e-231234aa71f6" />
+<img width="555" height="92" alt="Screenshot 2026-02-26 at 4 08 09 PM" src="https://github.com/user-attachments/assets/f2b41341-6db1-43a8-81ea-49ef6c92a4e9" />
+<img width="519" height="79" alt="Screenshot 2026-02-26 at 4 07 32 PM" src="https://github.com/user-attachments/assets/f9e9c88d-029b-4b10-8883-59f76ad73e04" />
+<img width="534" height="73" alt="Screenshot 2026-02-26 at 4 07 43 PM" src="https://github.com/user-attachments/assets/5cd83308-5bca-4e49-85e2-2fd9a834b0c3" />
 
+* Ideal Case:
+              * At Vm (VDD/2), output flips instantly from VDD to 0, Slope is infinite—perfectly vertical transition.
+Practical Case:
 
+* Real devices have resistance and capacitance, so output transitions over a range—not instantly, Slope is finite (not vertical), and output might not hit exactly 0 V or VDD.
 
-
-
-
-
+## 37 L-2 Noise margin voltage parameters:
 
 
 
