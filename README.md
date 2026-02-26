@@ -836,20 +836,55 @@ SIMULATIONS:
 
 ## Static behavior evaluation – CMOS inverter robustness – Device variation
 ## 44 L-1 Sources of variation – Etching process:
+* Etching process variation is one of the main sources of variation in CMOS fabrication.
+
+  <img width="1384" height="555" alt="Screenshot 2026-02-26 at 8 04 17 PM" src="https://github.com/user-attachments/assets/a1ed877d-df1f-4550-8176-182f555ae2c0" />
+  <img width="980" height="603" alt="Screenshot 2026-02-26 at 8 03 57 PM" src="https://github.com/user-attachments/assets/50d74a6e-038f-4f63-abbf-0dac84f79bce" />
+  <img width="1388" height="671" alt="Screenshot 2026-02-26 at 8 04 36 PM" src="https://github.com/user-attachments/assets/56191e56-0edd-42d7-ba6b-439c2f4144c2" />
+  <img width="1079" height="744" alt="Screenshot 2026-02-26 at 8 05 00 PM" src="https://github.com/user-attachments/assets/7e44ca96-d8e6-47d7-b824-6320c99230ec" />
+
+* Etching defines the physical structure of each device, which directly affects the delay and performance of the cell.
+* In layout images, each color usually represents a different metal layer or region.
+* In a chain of inverters, you might see:
+                                         Mask overlap issues: Misalignment during fabrication can cause variations.
+* Defects in the middle vs. at the ends: The gates in the middle of the inverter chain may have a certain type of fault, while those at the ends might have different defects.
+   <img width="2858" height="1532" alt="image" src="https://github.com/user-attachments/assets/1173ca0c-fdca-477e-9559-30dbe6687bbd" />
+
+* These process variations can cause devices to behave differently, impacting the overall circuit performance.
+
+
+## 45 L-2 Sources of variation – oxide thickness:
+* Oxide thickness variation is another key source of process variation in CMOS.
+* Changes in gate oxide thickness directly affect the transistor’s threshold voltage and overall performance.
+
+<img width="2754" height="1246" alt="image" src="https://github.com/user-attachments/assets/cb227890-8dd3-486f-904b-1b6608cf2b2b" />
+
+<img width="1772" height="1498" alt="image" src="https://github.com/user-attachments/assets/9d97fcfb-76b0-4412-856d-91ebf3b77ccd" />
+
+<img width="2150" height="602" alt="image" src="https://github.com/user-attachments/assets/e3c53cac-6a2c-4c4f-8b7e-5ab6f2da4f35" />
+
+<img width="1166" height="178" alt="Screenshot 2026-02-26 at 8 16 50 PM" src="https://github.com/user-attachments/assets/19140b3c-9c55-47cc-9bdb-fca34c3795d9" />
+
+
+## 46 L-3 L3 Smart SPICE simulation for device variations:
+
+* Weak PMOS (small W/L, high resistance) and strong NMOS (large W/L, low resistance)
+NMOS pulls down the output quickly; PMOS pulls up more slowly.
+* The switching threshold (Vm) shifts closer to ground, and the output fall is faster than the rise.
+  
+simulation things
+## 47 L-4 Conclusion:
 
 
 
+<img width="1349" height="765" alt="Screenshot 2026-02-26 at 8 25 25 PM" src="https://github.com/user-attachments/assets/920efd14-6976-4fdf-a2da-b6ae0526125f" />
+
+<img width="988" height="648" alt="Screenshot 2026-02-26 at 8 29 51 PM" src="https://github.com/user-attachments/assets/935d2fae-5a94-4b08-81a0-0d8f9c4d8d0a" />
+
+<img width="1075" height="666" alt="Screenshot 2026-02-26 at 8 31 30 PM" src="https://github.com/user-attachments/assets/9895222f-46aa-402a-a1a2-3582d8da523e" />
 
 
-
-
-
-
-
-
-
-
-
+## 48 L-5 Sky130 Device Variation Labs:
 
 
 
