@@ -475,6 +475,7 @@ How it works:
 * First, we convert the PMOS gate voltage using VIN = VGSP + VDD, so everything is on the VIN axis.
 * Next, since PMOS current flows opposite to NMOS, we use IDSN = –IDSP to plot both on the same current axis.
 * This lets us directly compare NMOS and PMOS load curves using just VIN and IDSN.
+  
 <img width="1088" height="764" alt="day 2 lec 4 " src="https://github.com/user-attachments /assets/4b97d6dc-43f8-4607-8f01-ed040b18c7c5" />
    
 * The VTC is found where NMOS and PMOS currents are equal (intersection point).
@@ -487,6 +488,7 @@ How it works:
   
 <img width="1074" height="755" alt="day 2 lec 5 2" src="https://github.com/user-attachments/assets/095fcfba-eee6-4c5b-aa90-e7616cebcee9" />
 <img width="692" height="673" alt="day 2 lec 5 3" src="https://github.com/user-attachments/assets/76767468-5894-4ced-b73f-6d63f4c74ec4" />
+
 * The key step is rewriting the PMOS drain voltage as VDSP = VOUT – VDD, so now every PMOS data point is just (VIN, VOUT, IDSN).
 * For NMOS, it’s even easier: VGSN = VIN, VDSN = VOUT—the NMOS I–V curve already maps to (VIN, VOUT, IDSN).
 * Now, both PMOS and NMOS load curves are in the same format and ready to be combined to find the VTC.
