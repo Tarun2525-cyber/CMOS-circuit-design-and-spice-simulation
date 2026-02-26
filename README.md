@@ -775,7 +775,7 @@ To find noise margin, we plot voltage levels (VOH, VIH, VIL, VOL) on the inverte
 * However, there are limits to how wide you can make the PMOS:
 * Fabrication constraints make it hard to make PMOS more than ~2 times wider than NMOS.
 * Very large PMOS widths (like 5× NMOS) are not practical.
-* The area of the CMOS inverter is also important for digital design—it affects chip size and layout.
+* The area of the CMOS inverter is also important for digital design—it affects chip size and layout so some are made for analog devices and other for digital ones based on ones usage.
 
 <img width="1896" height="1290" alt="image" src="https://github.com/user-attachments/assets/ed054757-248c-4f55-a44a-205e9e70d7db" />
 
@@ -783,11 +783,59 @@ To find noise margin, we plot voltage levels (VOH, VIH, VIL, VOL) on the inverte
 
 
 
+## 40 L-5 Sky130 Noise margin labs:
+
+SIMULATIONS:
+
+
+## CMOS power supply and device variation robustness evaluation
+   ## Static behavior evaluation – CMOS inverter robustness – Power supply variation
+   ## 41 L-1 Smart SPICE simulation for power supply variations:
+* Power supply scaling is important as technology scales down; MOSFETs need lower VDD to operate correctly and reliably.
+* When designing an inverter, PMOS is usually made wider than NMOS to match their resistance and keep switching behavior consistent.
+* To test inverter robustness with lower supply voltages:
+* Use the same device sizes.
+* Sweep the power supply from 2.5 V down to 1 V in steps of 0.5 V.
+  
+  <img width="1334" height="715" alt="Screenshot 2026-02-26 at 6 36 11 PM" src="https://github.com/user-attachments/assets/6e04f10f-a71d-42d4-a5d5-439d88cb2e79" />
+
+* The goal is to check if the inverter’s switching action remains proper as VDD decreases.
+* In SPICE, set powersupply = 2.5V, then use .alter vdd=powersupply and step down the supply voltage.
+* Run simulations and plot the resulting transfer curves at each VDD.
+* All control commands and data processing can be handled between .control and .endc in your SPICE deck
+
+
+## 42 L-2 Adavntages and Disadvantages using low supply voltage
+* The CMOS inverter can still work at low supply voltages (like 0.5 V), as seen in previous experiments.
+* Gain factor in an inverter is how much the output changes for a small change in input (slope of the VTC curve).
+* At lower VDD, the VTC curve gets steeper, so gain increases—here, gain improved by about 56% (to 11.53).
+
+<img width="2138" height="1262" alt="image" src="https://github.com/user-attachments/assets/99190df8-98a5-4fa5-983f-919f78e4e682" />
+<img width="2162" height="1284" alt="image" src="https://github.com/user-attachments/assets/31fd3aa0-846d-42ae-8306-92a9716dd816" />
+
+
+* Advantages of lower supply voltage:
+* Power consumption drops dramatically.Energy used per switch is ( \frac{1}{2}CV^2 ), so lowering VDD from 2.5 V to 0.5 V reduces energy by about 96%.
+* Disadvantages of lower supply voltage:
+* The inverter can’t fully charge/discharge the load capacitance at very low VDD (like 0.5 V).
+* Rise and fall times increase (switching is slower) because there’s not enough voltage to move charge quickly.
+  
+* for 0.5 v rise and fall
+  <img width="1113" height="665" alt="Screenshot 2026-02-26 at 7 45 13 PM" src="https://github.com/user-attachments/assets/d28dea3f-0726-4b99-bddf-34f0ab96e9b3" />
+* for 2.5 v rise and fall
+  <img width="2216" height="1370" alt="image" src="https://github.com/user-attachments/assets/22bfc0a6-7a14-496f-9b0a-126513fd65ac" />
+* for 1v rise and fall
+<img width="2270" height="1272" alt="image" src="https://github.com/user-attachments/assets/e7cd0d65-21fd-4145-a0b5-689ec4e5e0aa" />
+
+* At higher VDD (like 2.5 V), charging and discharging are faster and more complete.
+
+## 43 L-3 Sky130 Supply Variation Labs
 
 
 
 
-
+## Static behavior evaluation – CMOS inverter robustness – Device variation
+## 44 L-1 Sources of variation – Etching process:
 
 
 
