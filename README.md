@@ -636,6 +636,85 @@ Case B: (WP/WN) = 1.5 → VM ≈ 0.98 V
 
 ## 32 L-3 Analytical expression of (W/L)p and (W/L)n as a function of Vm:
 
+<img width="1670" height="788" alt="image" src="https://github.com/user-attachments/assets/ffedfa8f-9cc2-48d1-878d-fa45ebc142ac" />
+
+* we calculate VM from given W/L values, but now we do the reverse: given VM, find the needed W/L for PMOS and NMOS.
+* Target: VM = 1.25 V (half of VDD = 2.5 V). This is important for applications like clock inverters needing centered switching.
+* Start with the current equation (IDSN = –IDSP), rearrange, and expand Kn and Kp to get W/L terms.
+
+<img width="966" height="190" alt="image" src="https://github.com/user-attachments/assets/6d5c5c64-b4b0-4285-9329-a8f8d5c168c4" />
+
+<img width="968" height="214" alt="image" src="https://github.com/user-attachments/assets/567a642c-b5ea-4508-92e6-ccf24f109764" />
+
+* After simplifying, you get:
+                             * W/L(PMOS) = 2.5 × W/L(NMOS) (for VM = 1.25 V).
+* This means PMOS must be 2.5x wider than NMOS for center switching, which makes sense as PMOS is slower.
+
+<img width="1894" height="670" alt="image" src="https://github.com/user-attachments/assets/0a1df436-d77c-451d-855c-815e1ecf6724" />
+
+* To verify, run SPICE simulations: keep NMOS size fixed, increase PMOS size in steps (1×, 2×, 3×...), and observe how the switching threshold changes.
+* NMOS W/L = 0.375/0.25; try PMOS W/L = 0.75/0.25 (2× wider) and see VM shift.
+* Also, record rise and fall delays for each case to get a glimpse of CMOS dynamic behavior.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
