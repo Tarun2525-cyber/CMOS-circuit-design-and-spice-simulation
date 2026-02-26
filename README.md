@@ -565,7 +565,9 @@ Device dimensions for both: W = 0.375 µm, L = 0.25 µm
 * Width variation experiment:
 * New simulation: WN = 0.375 µm, WP = 0.9375 µm, Ln = Lp = 0.25 µm (WP is now 2.5 times wider than NMOS).
   
-2 graphs needde to be here for comparing the 2 simulations
+<img width="445" height="332" alt="image" src="https://github.com/user-attachments/assets/12b24c65-ffea-49e9-8569-cb2884351d7b" />
+<img width="441" height="340" alt="image" src="https://github.com/user-attachments/assets/4ec7230a-36df-4004-9f12-02a0971723ca" />
+
   
 
 ## 29-L3 Labs Sky130 SPICE simulation for CMOS:
@@ -580,7 +582,13 @@ W/L ratio: 2.3 (for both, with same length)
                      Input waveform: Use a pulse source for Vin, Rise time: 0.1 ns, Fall time: 0.1 ns, Pulse width: 2 ns
 * Plotting Vout vs time to observe the inverter’s dynamic response to a switching input
 
-1 graph
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/faaee55e-8652-4584-b3d1-2d185aff1b9a" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/0cdf3bb1-6983-47e3-ac58-e33e3c1caebf" />
+
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/a2daf822-76dd-4bca-a7bf-29b7da2d233a" />
+
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/538522fe-d570-4856-9c86-05e27f09b4cd" />
+
 
 ## Static behaviour evaluation -CMOS inverter robustness- switching threshold
 
@@ -664,7 +672,7 @@ Case B: (WP/WN) = 1.5 → VM ≈ 0.98 V
 
 <img width="1894" height="670" alt="image" src="https://github.com/user-attachments/assets/0a1df436-d77c-451d-855c-815e1ecf6724" />
 
-* To verify, run SPICE simulations: keep NMOS size fixed, increase PMOS size in steps (1×, 2×, 3×...), and observe how the switching threshold changes.
+* To verify, run SPICE simulations: keep NMOS size fixed, increase PMOS size in steps, and observe how the switching threshold changes.
 * NMOS W/L = 0.375/0.25; try PMOS W/L = 0.75/0.25 (2× wider) and see VM shift.
 * Also, record rise and fall delays for each case to get a glimpse of CMOS dynamic behavior.
 
@@ -796,6 +804,9 @@ To find noise margin, we plot voltage levels (VOH, VIH, VIL, VOL) on the inverte
 ## 40 L-5 Sky130 Noise margin labs:
 
 SIMULATIONS:
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/49f91ea7-495f-4ea8-97f5-4c47897e69b2" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/43219a39-d0e7-44fb-9b36-6a1fd2b2eb6a" />
+
 
 
 ## CMOS power supply and device variation robustness evaluation
@@ -841,6 +852,9 @@ SIMULATIONS:
 
 ## 43 L-3 Sky130 Supply Variation Labs
 
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/b967cc0b-0ef7-40f3-aa57-4c7969809b9f" />
+
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/eb530968-11a7-4742-bd21-ef9b4276fed0" />
 
 
 
@@ -885,17 +899,20 @@ NMOS pulls down the output quickly; PMOS pulls up more slowly.
 simulation things
 ## 47 L-4 Conclusion:
 
-
+* comaparing the characteristics we got .
 
 <img width="1349" height="765" alt="Screenshot 2026-02-26 at 8 25 25 PM" src="https://github.com/user-attachments/assets/920efd14-6976-4fdf-a2da-b6ae0526125f" />
 
 <img width="988" height="648" alt="Screenshot 2026-02-26 at 8 29 51 PM" src="https://github.com/user-attachments/assets/935d2fae-5a94-4b08-81a0-0d8f9c4d8d0a" />
 
 <img width="1075" height="666" alt="Screenshot 2026-02-26 at 8 31 30 PM" src="https://github.com/user-attachments/assets/9895222f-46aa-402a-a1a2-3582d8da523e" />
-
+* There is not much variation in Noise Margins in both the high endcases, that means it behaves as a robust inverter in both the cases.
 
 ## 48 L-5 Sky130 Device Variation Labs:
 
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/1ca57bff-41f0-4f16-baa1-206a3a3d2e15" />
+
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/70d3204b-ea3b-44bf-82d1-4dfeb337d6be" />
 
 
 
