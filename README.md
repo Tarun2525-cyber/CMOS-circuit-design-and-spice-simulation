@@ -291,6 +291,7 @@ The following equations represent the MOSFET operation and relationships:
 
 <img width="1600" height="923" alt="image" src="https://github.com/user-attachments/assets/a798f9d4-73ac-41e8-9879-111ca598bf51" />
 
+**disclaimer: "These the above plots are done in cloud but the rest after 15 L-1 are done in virtual machines as cloud based was frequently logging out.**
 
 ## Velocity Saturation and Basics of CMOS Inverter VTC:
    ## SPICE simulation for lower nodes and velocity saturation effect:
