@@ -60,8 +60,7 @@ Threshold Voltage (V<sub>t</sub>) in MOSFETs
 * A strong positive voltage attracts electrons (minority carriers) to the surface.
 * These electrons gather at the oxide–semiconductor interface, forming an n-type inversion layer.
 
-
-     ## 2-L3 Strong Inversion and Threshold Voltage:
+## 2-L3 Strong Inversion and Threshold Voltage:
   
    ## Depletion and Inversion in NMOS
 * At the interface between the n+ region and the p-type substrate, a depletion region forms.
