@@ -897,7 +897,8 @@ SIMULATIONS:
 NMOS pulls down the output quickly; PMOS pulls up more slowly.
 * The switching threshold (Vm) shifts closer to ground, and the output fall is faster than the rise.
   
-simulation things
+<img width="1429" height="226" alt="Screenshot 2026-02-27 at 10 14 22 PM" src="https://github.com/user-attachments/assets/b023b99c-e0f2-4e1e-a5a9-1c56996de23c" />
+
 ## 47 L-4 Conclusion:
 
 * comaparing the characteristics we got .
