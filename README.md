@@ -1,5 +1,3 @@
-<img width="703" height="528" alt="Screenshot 2026-02-27 at 10 17 11 PM" src="https://github.com/user-attachments/assets/84b5f2b0-7eeb-4e32-9992-4dea0177422b" /><img width="418" height="292" alt="Screenshot 2026-02-27 at 10 16 52 PM" src="https://github.com/user-attachments/assets/eff82834-c4b9-4203-80eb-5ee206788c70" /><img width="447" height="291" alt="Screenshot 2026-02-27 at 10 16 42 PM" src="https://github.com/user-attachments/assets/9303d2be-a3e5-4317-b387-277f50c1a337" /><img width="567" height="329" alt="Screenshot 2026-02-27 at 10 16 18 PM" src="https://github.com/user-attachments/assets/cc4954f7-eb63-4b0a-9c01-af09dd976f00" />
-# CMOS-circuit-design-and-spice-simulation
 
 ## BASICS OF NMOS DRAIN CURRENT(Id) vs DRAIN TO SOURCE VOLTAGE
 
